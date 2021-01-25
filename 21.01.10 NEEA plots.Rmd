@@ -1,0 +1,86 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(readr)
+library(ggplot2)
+library(stringr)
+library(purrr)
+library(lubridate)
+library(viridis)
+
+```
+
+
+```{r}
+sites <- read_csv("/Users/jessicakeast/Downloads/sites.csv")
+
+read_neaa_csv <- function(path, variable){
+  read_csv(path) %>%
+    dplyr::mutate(hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+                  date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+    group_by(ee_site_id, hour, date) %>% 
+    summarize(var=mean({{variable}})) %>% 
+    full_join(sites, by = "ee_site_id") %>% 
+    group_by(date, hour, hz, cz) %>% 
+    summarize(mean_var = mean(var), median_var = median(var), max_var=max(var), min_var=min(var))
+}
+
+#read_temp_csv(test_csv)
+read_month_temp <- function(quar_month){
+list.files(str_c("/Users/jessicakeast/Downloads/", quar_month, "/temperature/"), full.names = TRUE) %>% 
+  map(read_neaa_csv, `temp`) %>% 
+  reduce(rbind) %>% 
+  group_by(date, hour, hz, cz) %>% 
+  summarize(mean_temp = mean(mean_var), median_temp = median(median_var), max_temp=max(max_var), min_temp=min(min_var)) %>% 
+  mutate(month=str_extract(quar_month, "[A-Za-z]{3}$"))
+}
+
+temperature_data <- list("2019_Q1_v3/Jan", "2019_Q1_v3/Feb", "2019_Q1_v3/Mar", "2019_Q2_v3/Apr", "2019_Q2_v3/May", "2019_Q2_v3/Jun", "2019_Q3_v3/Jul", "2019_Q3_v3/Aug", "2019_Q3_v3/Sep", "2019_Q4_v3/Oct", "2019_Q4_v3/Nov", "2019_Q4_v3/Dec") %>% 
+  map(read_month_temp) %>% 
+  reduce(rbind) %>% 
+  mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz))
+
+
+
+```
+
+```{r}
+read_month_power <- function(quar_month){
+list.files(str_c("/Users/jessicakeast/Downloads/", quar_month, "/power/"), full.names = TRUE) %>% 
+  map(read_neaa_csv, `power`) %>% 
+  reduce(rbind) %>% 
+  group_by(date, hour, hz, cz) %>% 
+  summarize(mean_power = mean(mean_var), median_power = median(median_var), max_power=max(max_var), min_power=min(min_var)) %>% 
+  mutate(month=str_extract(quar_month, "[A-Za-z]{3}$"))
+}
+
+power_data <- list("2019_Q1_v3/Jan", "2019_Q1_v3/Feb", "2019_Q1_v3/Mar", "2019_Q2_v3/Apr", "2019_Q2_v3/May", "2019_Q2_v3/Jun", "2019_Q3_v3/Jul", "2019_Q3_v3/Aug", "2019_Q3_v3/Sep", "2019_Q4_v3/Oct", "2019_Q4_v3/Nov", "2019_Q4_v3/Dec") %>% 
+  map(read_month_power) %>% 
+  reduce(rbind) %>% 
+  mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz))
+```
+
+```{r}
+
+```
+
+```{r}
+ggplot(temperature_data, aes(x = date, y = hour, fill = median_temp))+geom_tile()+
+  scale_fill_viridis_c(option = "plasma", limits = c(12,125), breaks = c(20, 40, 60, 80, 100, 120))+
+  facet_grid(hz~cz)+
+  scale_y_continuous(breaks=c(0, 6, 12, 18))+
+  scale_x_date(breaks=c(mdy("1-1-2019"), mdy("4-1-2019"), mdy("7-1-2019"), mdy("10-1-2019")), labels = c("Jan", "Apr", "Jul", "Oct"))+
+  theme_bw()+
+  labs(title = "2019 NEEA Home Energy Temperature Data\nby Cooling and Heating Zones", x = NULL, y = "Hour", fill = "Temperature\n(Fahrenheit)")
+  #theme(legend.key.height = unit(1.25, "cm"), legend.key.width = unit(1, "cm"))+
+  #theme(text = element_text(family = "Muli"),
+  #  plot.title=element_text(family = "Roboto Slab", face="bold"))
+```
