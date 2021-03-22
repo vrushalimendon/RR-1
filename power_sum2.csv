@@ -1,0 +1,1240 @@
+equipment_type_desc,category,sum_power
+,Heating,1998.838
+,Other,21.418
+ Back Door OL + Switches,Other,36.062
+ Bath,Other,452.841
+ Bathroom,Other,11.34
+ Bathroom Heater,Heating,0.905
+ Bathroom Vent Fan,Other,14.027000000000001
+ Bed,Other,68.188
+ Bedroom Outlets,Other,12.413
+ Bedrooms / Main Bath,Other,101.03800000000001
+ Central Vac,Other,0
+ Clothes Dryer,Appliances,386.977
+ Clothes Washer,Appliances,119.71
+ Den,Other,340.854
+ Din Lt/Fam,Other,567.087
+ Dining,Other,7.338
+ Dishwasher,Appliances,300.283
+ Disposal,Appliances,10.852
+ Door Opener Sensor,Other,162.57
+ Dryer,Appliances,1145.136
+ Electric Furnace,Heating,2322.325
+ Entry,Other,99.896
+ Family Room GFCI/Lights + Receps,Other,48.19
+ Family Room Refer/Garage GFCI,Other,31.874000000000002
+ Forced Air Unit,Heating,409.825
+ Gar 0,Other,104.85900000000001
+ Gar 2,Other,84.178
+ Garage,Other,6332.579
+ Garage Heat,Other,0
+ Garbage Disposal,Appliances,197.006
+ Garbage Disposal/Jiggle Machine,Other,2.275
+ Gas Furnace,Heating,847.092
+ GDO,Other,26.041
+ Heat,Heating,623.543
+ Heater,Heating,1.927
+ Heater,Other,0.103
+ Hood,Other,2.681
+ Hot Tub,Other,5493.781
+ Hot Tub Outlet,Other,0.001
+ Hydro Tub,Other,3.5909999999999997
+ Ice Maker,Other,208.271
+ Jacuzzi Rec,Other,3.79
+ Kit Ct,Other,420.963
+ Kit Ct/M Bath,Other,61.447
+" Kit Outlet, L Of Window",Other,0.177
+ Kit Refer,Other,320.00600000000003
+ Kit. Micro,Other,208.42600000000002
+ Kitchen,Other,1334.0800000000002
+ Kitchen Lights,Other,84.267
+ Kitchen South Wall O/Ls,Other,1.6760000000000002
+ Laundry Room,Other,335.25
+ Lighting Section,Other,76.295
+ Lights & Plugs,Other,55.06
+ Lights + Recep,Other,104.058
+ Lights + Recepts/Dining Recepts,Other,0.40700000000000003
+ Lights + Recepts/Lights + Recepts,Other,128.127
+ Lights + Recepts/Study/Bath GFCI,Other,494.34799999999996
+ Lights + Recps/Kitchen/Kitchen,Other,241.959
+ Living Room North Wall O/L,Other,20.704
+ Living Room/Com,Other,1312.734
+ M. Bathroom Floor Heater,Heating,1995.0279999999998
+ Master Bath Circuit,Other,21.54
+ Master Bed Bath,Other,502.33299999999997
+ Master Bedroom,Other,128.164
+ Mastr Bath Plug,Other,21.054000000000002
+ Microwave,Appliances,121.996
+ Mster Bath Lts,Other,70
+ Nook/Hall,Other,139.12300000000002
+ O/L On Right Of Window,Other,0
+ O/L Outside Of Bath,Other,4.849
+ Office Back Bedroom,Other,356.08500000000004
+ Oven,Appliances,305.773
+ Plug-in Garage Heat,Other,0
+ Pump,Other,76.024
+ Pump Rm Plugs,Other,125.156
+ Range,Appliances,371.257
+ Recp Appl,Other,74.07900000000001
+ Refrigerator,Appliances,368.999
+ Sewer,Other,5.986000000000001
+ Sewer Lift Station,Other,14.889
+ Shop,Other,235.762
+ Stove,Appliances,22.63
+ Stove Top,Appliances,0.601
+ Sunroom Outlets,Other,522.932
+ Towel Warmers,Other,0
+ Tub,Other,16.915
+ Unknown,Other,5302.5250000000005
+ Utility Plug,Other,18.136
+ Washer Lites,Other,55.869
+ Wine Cooler,Other,55.348
+? Kitchen Plugs ,Other,62.34
+#2 Bedroom And Hallway Lights,Other,63.913000000000004
+100 A Subpanel,Other,8726.37
+2 Bedroom And 2 Bathroom,Other,268.044
+2 Beds,Other,838.951
+2 Upper Bedrooms,Other,184.68900000000002
+200V Shop Plug,Other,6.2250000000000005
+220 Volt / NEMA 6-20 T Plug,Other,0
+240V Chevy,Other,5109.819
+"2nd Floor Guest Room W/ Router, 1st Floor Bathroom, Living Room Outlet",Other,1277.957
+2nd Level Lights + Outlets ,Other,238.64600000000002
+3 Receps. Dining Room,Other,7.890000000000001
+30 Amp RV Outlet,Other,9295.791
+50 Amp RV Outlet,Other,3495.91
+AC,AC,141.074
+AC Wall Unit,Heating,2.3049999999999997
+Addition Master  Bathroom Wall Outlets,Other,0.082
+"Addition Master - Bathroom Fan, Lights, Wall Heater",Other,319.074
+Addition Subpanel,Other,10926.721
+Air Compressor,Other,6.673
+Air Compressors For Attic Furnace,Heating,6657.273
+Air Handler,Heating,8960.466
+Air Handler,Other,2098.149
+Air Purifier Fan,Other,78.94500000000001
+Air/lights/outlets Upstairs,Other,1134.965
+Alex's Room/Hall,Other,1867.348
+Appliance,Other,3732.3790000000004
+Appliance Circuit,Other,5239.41
+Appliances,Other,10241.268
+Appliances - Kitchen Outlets?,Other,1759.566
+Atrium Lights + Out ,Other,14.175
+Attic,Other,37.958999999999996
+Attic Furnace,Heating,1394.688
+Attic Outlet + Lts / Studio Lights,Other,115.282
+Back Bedroom,Other,785.105
+Back Bedroom Lights And Outlets,Other,205.547
+Back Deck Outlets,Other,27.566
+Back Lights,Other,117.946
+Back Plugs,Other,7.223
+"Back Porch, Outdoor Refrigerators",Other,2937.545
+Back Room,Other,11.344
+Back Room And Living Room Outlets And Lights,Other,1631.743
+Backyard Lights,Other,1.32
+Backyard Plug And Garage Doors,Other,1057.661
+Barn / Compactor,Other,30.606
+Baseboard Heat 1,Heating,132.194
+Baseboard Heat 2,Heating,0.16100000000000003
+Baseboard Heat 3,Heating,471.861
+Baseboard Heat 4,Heating,12.376
+Baseboard Heat 5,Heating,134.288
+Baseboard Heater 1,Heating,132.53
+Baseboard Heater 2,Heating,18051
+Baseboard Heater 3,Heating,4333.1089999999995
+Baseboard Heater 4,Heating,849.411
+Basement,Other,1119.383
+"Basement Bedroom, Unknown",Other,2908.35
+Basement Furnace,Heating,4644.503
+Basement Garage Outlets ,Other,407.695
+"Basement Garage, Den TV Room, Office",Other,2118.763
+Basement Light By Freezer Only,Other,1.1139999999999999
+Basement Lights,Other,1049.361
+"Basement Lights , Etc.",Other,206.083
+Basement Lights And Outlets,Other,479.95300000000003
+"Basement Lights, Etc.",Other,1285.681
+Basement Outlet,Other,3.007
+"Basement Outlet, Etc.",Other,36.271
+Basement Outlets,Other,278.65999999999997
+Basement Plug,Other,208.055
+Basement Plugs ,Other,6415.555
+Basement Plugs/ Dining Plugs,Other,121.78999999999999
+Basement Rec Room Lights,Other,60.588
+Basement Receptacles,Other,836.993
+"Basement, Kitchen & Dining Room Lights",Other,1329.272
+Basement/Camper,Other,290.651
+Bath,Other,143.779
+Bath ,Other,109.661
+Bath + 2 Bedroom,Other,106.961
+Bath And Garage,Other,675.463
+"Bath Fans, Hall & Master",Other,503.495
+Bath Floor,Other,655.915
+Bath FR,Other,0.171
+Bath GFCI Outlet,Other,53.205
+Bath GFI,Other,32.375
+Bath Heat,Other,55.206
+Bath Heat ,Heating,28.055
+Bath Heat APPL,Other,410.326
+Bath Heat Fan Lite,Other,58.221
+Bath Heater,Heating,0.922
+Bath Heater,Other,329.683
+Bath Lights,Other,148.737
+Bath Outlet,Other,248.58700000000002
+Bath Outlets,Other,1115.549
+Bath Plug,Other,22.843
+Bath Plugs,Other,200.98000000000002
+Bath Receptacles ,Other,12.626000000000001
+Bath Room,Other,181.77700000000002
+Bath/ M. Bedroom,Other,195.637
+Bath/Bed Lts,Other,1432.592
+Bath/Utility GFI,Other,185.105
+Bath/utility Room,Other,56.943
+Bathroom,Other,6369.014
+Bathroom - Dine,Other,1369.392
+Bathroom & Patio Outlets,Other,1208.036
+Bathroom 1 Septic Pump,Other,21.217
+Bathroom 2&3,Other,99.642
+Bathroom Circuits,Other,271.27200000000005
+Bathroom Electric Ceiling Radiant Heat,Other,1160.435
+Bathroom Floor Heat,Heating,766.804
+Bathroom GFCI,Other,499.511
+Bathroom GFCI & Dishwasher,Other,284.692
+Bathroom GFCI Outlets,Other,0.44
+Bathroom GFI,Other,748.5029999999999
+Bathroom Heat,Other,0.098
+Bathroom Heat/vent,Other,1467.7740000000001
+Bathroom Light/fan,Other,757.793
+Bathroom Lights,Other,177.118
+Bathroom Lights & Fan,Other,861.215
+Bathroom Lights And Outlets,Other,1117.73
+Bathroom Lights And Plugs,Other,48.346000000000004
+Bathroom Near Entry - Outlets,Other,39.997
+Bathroom Near Entry And Guest Room - Outlets,Other,365.471
+Bathroom Outlet,Other,24.274
+Bathroom Outlet - Not Installed,Other,0.093
+Bathroom Outlets,Other,297.838
+Bathroom Plugs,Other,1.192
+Bathroom Receptacles,Other,455.69100000000003
+Bathroom Vanity + Outlet Bedroom ,Other,99.666
+Bathroom Wall,Other,66.406
+"Bathroom, Kitchen",Other,857.134
+Bathrooms,Other,37.991
+Bathrooms And Lights In Surrounding Areas,Other,80.012
+Bathtub Heater,Other,0
+Bathtub Pump,Other,18.992
+BDR ,Other,763.073
+Bed 2 & 3,Other,838.025
+Bed 2-3,Other,195.779
+Bed Rm #2,Other,431.1
+Bed/bath,Other,430.229
+Bed/Bath Heat,Heating,1098.306
+Bedroom,Other,4540.8240000000005
+Bedroom ,Other,625.023
+"Bedroom & Closet, Master Bath Lights & Fan, Wall",Other,236.225
+"Bedroom 1&2, Porch Light, Kitchen",Other,1269.86
+Bedroom 3 Outlets,Other,2.0509999999999997
+Bedroom And Bathroom,Other,250.792
+Bedroom Baseboard Heaters,Heating,52.052
+Bedroom Cct 1,Other,0
+Bedroom Cct 2,Other,810.7
+Bedroom Cct 3,Other,7910.201
+Bedroom Circuit,Other,75.792
+Bedroom Circuit 1,Other,2510.71
+Bedroom Circuit 2,Other,2255.9590000000003
+Bedroom Closet,Other,0
+Bedroom Heater ,Heating,0.008
+Bedroom Light,Other,1932.134
+Bedroom Lights,Other,3521.991
+Bedroom Lights & Plugs,Other,3307.274
+Bedroom Lights + Plugs,Other,2559.023
+Bedroom Lights And Outlets,Other,2720.177
+Bedroom Lights Kids ,Other,247.929
+"Bedroom Outlet, Etc.",Other,114.935
+Bedroom Outlets,Other,5757.267
+Bedroom Plug,Other,596.8950000000001
+Bedroom Plugs,Other,382.771
+Bedroom Plugs + Lights,Other,262.82099999999997
+Bedroom Power,Other,343.999
+Bedroom Radiant Ceiling Heat,Other,83
+Bedroom/playroom,Other,1853.3319999999999
+Bedrooms,Other,7851.952
+"Beds 2&3 Plugs & Lights, Main Bath Plugs & Lights",Other,187.412
+"Beds 3&4 Plugs & Lights, Master Bed Plugs & Lights",Other,1170.772
+Bidet,Other,145.75
+Bk Bedroom 1,Other,38.82
+Bk Bedroom 2,Other,371.305
+Blank,Other,713.428
+Blank ,Other,4057.105
+Blank #10,Other,808.244
+Blank #11,Other,67.421
+Blank #4,Other,1842.577
+Blank #6,Other,3233.851
+Blank #8,Other,8.206
+Blank #9,Other,584.914
+Blank 1,Other,9874.581
+Blank 10&12,Other,0
+Blank 13,Other,0
+Blank 2,Other,2584.8450000000003
+Blank 3,Other,2445.667
+Blank 4,Other,11145.743
+Blank 5,Other,1636.438
+Blank 6,Other,742.328
+Blank 7,Other,67.191
+Blank 8,Other,2829.304
+Blanks 9&11,Other,0
+Bonus Room Lights And Outlets,Other,0.017
+Bonus/entry,Other,3657.966
+Both Heat Basement Bath,Heating,1099.004
+Bottom Oven,Other,58.104
+Breakfast Room/master Bedroom,Other,1869.084
+Buffet Outlet,Other,8.659
+Cadet Heater,Heating,835.175
+Cadet Heater Downstairs,Heating,0
+Cadet Heater Upstairs,Heating,10.171000000000001
+Carport + Outside / Kitchen Outlets,Other,78.191
+"Carport, Lights, Recp",Other,418.031
+Ceiling Radiant Heat 3,Heating,583.508
+Central AC,AC,978.528
+Central Fan,Other,506.811
+Central Vac,Other,137.064
+Central Vac System ,Other,13.943999999999999
+Central Vacuum,Other,195.28
+Chest Freezer ,Appliances,154.81199999999998
+Christmas Lights,Other,1540.425
+Circuit ,Other,253.27300000000002
+"Clothes Dryer, House ",Appliances,375.079
+Clothes Washer ,Appliances,7.115
+Computer,Other,2609.658
+Computer Outlet Only,Other,567.839
+Computer Outlets,Other,449.31600000000003
+Computer Plugs,Other,49.078
+Computer Room,Other,1102.114
+Computer Room Outlets,Other,235.82799999999997
+Cook Top,Appliances,1461.695
+Cooktop,Appliances,132.886
+Cooling,AC,0.044
+Counter Cooktop,Appliances,866.239
+Den,Other,1461.519
+Den + Living Room Outlets,Other,398.473
+Den + Utility Room Heat,Heating,0.706
+Den Lights / Wall Outlets,Other,0.002
+"Den, Living Rm, Entry, Front Lights",Other,306.123
+Den/Liv Room Outlets,Other,1105.112
+Dine Plugs,Other,425.375
+Dine/Kit/Live Lits,Other,7756.928
+Dining,Other,231.769
+Dining & Kitchen Plugs,Other,895.1650000000001
+Dining & Living Rooms,Other,3195.013
+Dining & Microwave ,Other,78.484
+Dining Lights ,Other,650.21
+Dining Plugs - North Wall,Other,6339.264
+Dining Rec,Other,432.72400000000005
+Dining Room,Other,443.791
+Dining Room & Hallway Lights & Outlets,Other,2023.942
+Dining Room & Kitchen,Other,508.057
+Dining Room East Wall Outlets,Other,37.512
+Dining Room Lights And Outlets,Other,174.977
+Dining Room Outlets,Other,1516.651
+Dining Room Plugs,Other,56.745
+Dining Room Plugs ,Other,115.789
+Dining Room Recepts,Other,3412.195
+Dining Room/north Bedroom,Other,2096.97
+Dining-Hall Lights & Living Lights ,Other,1030.767
+Dining/Laundry/Bath Lights,Other,669.992
+"Dish Washer, House ",Appliances,114.91999999999999
+Dishwasher,Appliances,2852.127
+Dishwasher,Other,0.10200000000000001
+Dishwasher ,Appliances,61.769999999999996
+Dishwasher + Garbage Disposal,Other,175.817
+Dishwasher/Disposal,Other,30.766
+Disposal,Appliances,2157.679
+Disposal,Other,605.134
+Disposal ,Appliances,1.568
+Disposal & Microwave,Other,254.972
+Disposal + Others,Appliances,0.458
+Door Opener,Other,662.943
+Double Oven,Appliances,426.944
+Down Bathroom,Other,42.104
+Down Bed #1,Other,161.017
+Down Bed #2,Other,351.658
+Down Bedroom & Office,Other,8185.19
+Downstairs Bathroom,Other,300.298
+Downstairs Bathroom Electric Ceiling Radiant Heat,Heating,0
+Downstairs Bathroom Lights And Outlets,Other,85.22200000000001
+Downstairs Bathroom Outlets,Other,247.777
+Downstairs Bedroom,Other,7985.648
+Downstairs Bedroom Outlets,Other,91.997
+Downstairs East Bedroom,Other,3023.13
+Downstairs Electronics,Other,552.218
+Downstairs Family Room,Other,3429.547
+Downstairs Lights And Outlets,Other,1039.065
+Downstairs Lights And Plugs,Other,1432.14
+Downstairs Master,Other,6333.226
+Downstairs Outlets,Other,2507.293
+Downstairs Plugs,Other,1749.1009999999999
+Downstairs Water Heater,Heating,641.6610000000001
+Dryer,Appliances,13758.162
+Dryer ,Appliances,366.33799999999997
+Dryer Plug,Other,0
+Ductless HP,Heating,1328.81
+Dustin/Ryan,Other,946.106
+East And South Side Kitchen Outlets,Other,4399.328
+Edward/Edison/Laundry/Kitchen Lights ,Other,389.239
+Electric - Air Source Heat Pump,AC,2746.434
+Electric - Air Source Heat Pump,Heating,505814.67799999996
+Electric - Central AC,AC,88719.35900000001
+Electric - Central AC,Heating,39388.8
+Electric - Dryer,Appliances,259388.652
+Electric - Electric Baseboard,Heating,122734.756
+Electric - Furnace,Heating,464862.505
+Electric - Furnace,Other,1939.057
+Electric - Mini-Split HP,Heating,175011.637
+Electric - Water Heater - Electric Heat Pump ,Heating,16401.892
+Electric - Water Heater - Electric Resistance,Heating,804868.071
+Electric - Water Source Heat Pump,Heating,4644.1500000000005
+Electric - Zonal Heat,Heating,73629.61
+Electric - Zonal Heat,Other,452.852
+Electric - Zonal Heat ,Heating,6690.915
+Electric Baseboard - Dining Room,Heating,54.909
+Electric Car Charger,Other,4715.438
+Electric Car Charger - Chevy Bolt,Other,22355.282
+Electric Cooktop,Appliances,639.293
+Electric Furnace ,Heating,3071.036
+Electric Furnace And Air Handler,Heating,4095.5969999999998
+Electric Heat - Full Bath,Heating,0
+Electric Heat - Master Bedroom,Heating,0
+Electric Heat In Dining Room And Living Room,Other,205.924
+Electric Heater,Heating,92.421
+Electric Heater Back Bathroom,Other,76.80199999999999
+Electric Heaters,Heating,1024.248
+Electric Range Plug,Other,0.11900000000000001
+Electric Room Heaters,Other,58.228
+Electric Room Heaters For Nook & Family Rm,Heating,6077.4
+Entry,Other,207.794
+Entry And Powder,Other,151.124
+Entry And Study,Other,366.664
+Entry Area/Kitchen Outlets,Other,293.243
+Entry Hall Lights/plugs,Other,2270.654
+Entry Lights,Other,1503.459
+Entry Outside,Other,470.106
+"Entry, Hall",Other,77.649
+Entry/Kit. Lights,Other,860.1790000000001
+Entry/Liv Rm,Other,399.3
+EV Car Charger + Hallway/Living Room/Mom/Dad ,Other,974.329
+EV Charger,Other,5259.567
+EVSE,Other,18659.329
+Exterior Lights And Outlets,Other,205.547
+Exterior Outlet,Other,115.629
+Fam Room Plugs,Other,2756.424
+Family And Dining Room - Outlets And Lights,Other,3857.375
+Family Lights And Outlets,Other,34.889
+Family Rm Nook Patio,Other,1076.643
+Family Room,Other,1496.838
+Family Room & Front Room,Other,5094.055
+Family Room Circuit,Other,48.882000000000005
+Family Room Lights + Outlets,Other,559.213
+Family Room Lights And Outlets,Other,2916.853
+Family Room Plugs ,Other,81.867
+"Family Room, Den, And Back Porch Lights",Other,3338.38
+"Family Room, Downstairs Bath",Other,363.435
+Fan,Other,264.13599999999997
+Feed To Garage Sub-panel,Other,98384.475
+Feed To Sub Panel In Outbuilding,Other,11.362
+Fire Place,Other,229.8
+Fireplace Blower,Other,33.778
+Flood Lights,Other,84.045
+Floor Board Plugs,Other,31.539
+Floor Heat,Heating,19.701999999999998
+Floor Plug,Other,87.68
+Foyeur Lights/ Additional Sconces Cans And Fan,Other,263.23400000000004
+Freezer,Appliances,7.399
+Freezer,Other,688.34
+Freezer - Basement,Appliances,2490.375
+Freezer & Fridge,Other,1054.499
+Freezer + Others,Other,1307.388
+Freezer + Plugs,Other,72.087
+Freezer Outlets DN,Other,4450.457
+Freezer Plug,Other,0.002
+"Freezer, Lights, Kitchen",Other,4133.092
+Fridge / Kitchen Outlets,Other,894.13
+Front Area - Lights And Plugs,Other,798.919
+Front Bath & Bedroom,Other,1133.649
+Front Bath Light And Master Bedroom,Other,474.591
+Front Lights,Other,9.747
+Front Plugs,Other,6.711
+Front Porch GFCI,Other,21.402
+Front Porch GFI Outlet,Other,516.993
+Front Room,Other,210.915
+Front Room Lights,Other,293.437
+Front Room Lights And Outlets,Other,17.924
+Furnace,Heating,165320.558
+Furnace,Other,6618.11
+Furnace ,Heating,7735.595
+Furnace ,Other,431.356
+Furnace  Only,Other,2548.089
+Furnace - Not Used,Heating,3.226
+Furnace & Indoor Fan,Other,3280.36
+Furnace Backup,Heating,7734.97
+Furnace Backup Heat,Heating,8188.85
+Furnace Condensate Pump,Other,2851.721
+Furnace Electric Heat,Heating,15565.662
+Furnace Fan,Heating,30638.395
+Furnace Heating Element,Heating,168.176
+Furnace Main,Heating,7360.032
+Furnace Other,Other,1.673
+Furnace Plug ,Other,38.291000000000004
+Furnace Power ,Heating,24942.396
+Furnace Second Stage ,Heating,1045.473
+Furnace/Central Fan,Heating,5479.936000000001
+Furnace/shop Fan,Other,3441.907
+Future,Other,9.153
+Game Room Addition,Other,2387.167
+Garage,Other,25397.64
+Garage ,Other,118.978
+Garage / Patio / Dining Room Lights,Other,397.89300000000003
+Garage & Outside GFIs,Other,159.312
+Garage + Bath Plugs,Other,327.699
+Garage + Out,Other,156.344
+Garage And House Sub Panel,Other,3788.918
+Garage And Outside,Other,1460.79
+Garage Bath Kitchen,Other,461.656
+Garage Circuits,Other,9.82
+Garage Dedicated Circuit,Other,64.037
+Garage Door,Other,110.225
+Garage Door & Utility,Other,438.407
+Garage Door And Light,Other,384.945
+Garage Door Opener,Other,2357.1259999999997
+"Garage Door Opener, South Wall, Outside",Other,315.865
+"Garage Door Opener, West Wall",Other,2199.355
+Garage Doors ,Other,1071.845
+Garage GFCI,Other,564.424
+Garage GFI 1,Other,207.59900000000002
+Garage GFI 2,Other,408.62399999999997
+"Garage GFI, Master Bedroom GFI",Other,3156.924
+Garage Heat,Other,0
+Garage Heater,Heating,507.543
+Garage Lights,Other,4504.585
+Garage Lights & Outlets,Other,5891.0470000000005
+Garage Lights And Outlets,Other,768.178
+Garage Lts,Other,388.382
+Garage North,Other,212.089
+Garage Outlet,Other,1150.076
+Garage Outlet ,Other,4.098
+Garage Outlets,Other,12719.114
+Garage Outlets ,Other,2.995
+Garage Outlets 1,Other,987.6479999999999
+Garage Outlets 2,Other,676.403
+Garage Outlets East ,Other,8.487
+Garage Plugs,Other,2617.953
+Garage Plugs 2,Other,94.384
+Garage Plugs And Lights,Other,66.651
+Garage Power,Other,1053.209
+Garage Security Lights,Other,1241.246
+Garage South Side,Other,2366.471
+Garage Sub Panel,Other,290.83799999999997
+Garage Sub-panel Feed,Other,4190.48
+Garage Subpanel,Other,6291.59
+Garage Subpanel With Solar,Other,3016.315
+Garage West,Other,55.333
+"Garage, Backout, Kitchen Dining, Lights",Other,295.897
+"Garage, Laundry Lights",Other,1204.921
+"Garage, Living Room Lts",Other,6990.969
+Garage/laundry,Other,686.635
+Garage/Living Room,Other,3083.0190000000002
+Garage/Porch Lts,Other,590.727
+Garage/Utility/Hall,Other,330.87800000000004
+Garbage Disposal,Appliances,1149.455
+Garbage Disposal,Other,298.815
+Garbage Disposal ,Appliances,0.055
+Garbage Disposal / Kitchen Dining Lts,Other,347.853
+Garbage Disposal & Insta-hot,Appliances,712.95
+Garbage Disposal + Kitchen Outlets ,Appliances,48.125
+Garden,Other,0
+Gareage,Other,262.16
+Gas Cooktop Power,Appliances,52.373
+Gas Dryer,Appliances,37.41
+Gas Furnace,Heating,23041.871
+Gas Furnace ,Heating,501.253
+Gas Furnace/Central Fan,Heating,2108.012
+"Gas Range, Trash",Other,88.598
+Gas-fired Furnace & Indoor Supply Fan,Heating,2383.615
+General 1,Other,4369.193
+General 2,Other,347.822
+General Lighting,Other,1294.3410000000001
+General Lighting 1,Other,245.396
+General Lighting 2,Other,553.079
+Generator- Gas Powered,Other,0.011
+GFCI,Other,497.29900000000004
+GFCI Kitchen Plugs,Other,1469.7930000000001
+GFCI Outlet For Heat Pump,Other,2290.09
+GFCIs By Panel,Other,22.363
+GFI,Other,129.5
+GFI - Bath,Other,6.183
+GFI + Hot Tub,Other,340.993
+GFI Breaker,Other,3.6510000000000002
+GFI Breaker Circuit,Other,107.334
+GFI Outlet,Other,136.15
+GFI Outlet/circuit,Other,254.531
+GFI Protected Outlets,Other,361.53499999999997
+GFI-Bath Recept,Other,342.29900000000004
+Golf Outlets,Other,367.289
+Great Room & Hallway/den,Other,4447.067
+Great Room Lights/plugs,Other,5181.396
+"Great Room Lights/plugs, Garage/entry Lights/plugs",Other,4319.986
+Green House,Other,6.711
+Greenhouse,Other,3211.719
+Greenhouse Lights And Outlets,Other,0.40099999999999997
+"Guest Bath, Upstairs Bath",Other,74.016
+Guest Bedroom / Hall Bath,Other,219.669
+Guest Wing Furnace ,Heating,150.943
+H20 Tank,Other,0.21
+Hall & Bath Lights,Other,13.857000000000001
+Hall And Bedrooms,Other,1296.76
+"Hall Bath, Lights, Upstairs Bed Outlets",Other,3921.668
+Hall Circuit,Other,5405.546
+Hall Living Room Lights,Other,605.798
+"Hall, Study, Living Room, Dining Room",Other,611.18
+Hall/master Bath,Other,773.953
+Halllway And Master Lights,Other,5662.377
+Hallway,Other,2122.152
+"Hallway, Master Bdrm Lights, Recp",Other,142.199
+Hallway/Bedroom Light,Other,810.227
+Heat,Heating,0
+HEAT,Heating,6641.252
+Heat - Kitchen & Stairs,Other,0
+Heat Pump,Heating,35535.152
+Heat Pump 1,Heating,8200.077
+Heat Pump 2,Heating,876.484
+Heat Pump Air Handler,Heating,3695.004
+Heat Shop,Heating,757.1389999999999
+Heater,Other,2591.586
+Heaters Dining Rm,Other,2871.828
+Heaters Master Bdrm & Bath,Other,2938.9509999999996
+Heaters Office & Front Bdrm,Other,126.25
+Heating,Heating,16813.699
+Heatpump Backup Heat,Heating,0.035
+Home Office,Other,1660.77
+Hood,Appliances,3.739
+Hood,Other,1188.641
+Hood/microwave,Other,640.101
+Hot Tub,Other,63068.241
+Hot Tub ,Other,964.037
+Hot Water,Heating,792.862
+Hot Water Heater,Heating,3765.252
+Hot Water Recirculation Pump,Other,1849.1530000000002
+Hottub,Other,7023.365
+House Lights + Out ,Other,481.769
+House Vac,Other,63.342
+HP Water Heater,Heating,675.155
+Hybrid  Water Heater,Heating,2291.609
+Indoor Fan For Furnace And AC,Other,1708.577
+Instant Water Heater,Heating,812.14
+Iron Receptical,Other,1138.729
+Irrigation,Other,190.583
+Island Kitchen Outlets,Other,265.493
+Island Lights,Other,785.487
+Jacuzzi,Other,23075.417
+Jacuzzi Tub GFI,Other,17.238
+Jet Tub,Other,59.49
+Jetted Tub,Other,33.596000000000004
+K. Light/Fan Outside/Chan,Other,1014.986
+Kictchen Outlets + Fridge,Other,3477.214
+"Kids Bath & Downstairs Bed, Yard Light",Other,467.57000000000005
+Kit,Other,3954.327
+Kit + Den Lights,Other,309.649
+Kit GFI,Other,600.6949999999999
+Kit GFI ,Other,260.576
+Kit Lites,Other,258.701
+Kit Plugs,Other,154.77400000000003
+Kit Rec ,Other,124.95400000000001
+Kit/Dine/Nook,Other,121.172
+Kitc + Dining Light,Other,931.523
+Kitchen,Other,31922.31099999999
+Kitchen ,Other,1220.776
+Kitchen - Laundry,Other,1060.067
+"Kitchen - Outlets, Fridge, Toaster Oven",Other,3826.382
+Kitchen & Dining Lights,Other,307.545
+Kitchen & Dining Outlets,Other,1256.233
+Kitchen & Dining Room Plugs,Other,139.7
+"Kitchen & Dining Room, Master Bed & Bath, Deck GFI West",Other,3226.167
+Kitchen & Hallway & Bathroom & Laundry Outlet ,Other,249.088
+Kitchen #2,Other,328.25600000000003
+Kitchen #2 ,Other,13.293
+Kitchen 1,Other,110.603
+Kitchen 14,Other,709.833
+Kitchen 15,Other,610.0450000000001
+Kitchen 2,Other,1679.7350000000001
+Kitchen And Dining,Other,573.768
+Kitchen And Dining Lights,Other,6421.61
+Kitchen And Dining Room Lights,Other,41.235
+Kitchen And Hallway Bath Lights,Other,1260.767
+Kitchen And Refrigerator,Other,795.722
+Kitchen Appliance ,Other,4134.151
+Kitchen Appliance Plugs ,Other,2355.384
+Kitchen Appliances 1,Other,868.866
+Kitchen Appliances 2,Other,1541.38
+Kitchen Appliances 3,Other,127.514
+Kitchen Area,Other,3099.63
+Kitchen Cct 1,Other,541.364
+Kitchen Cct 2,Other,1671.6580000000001
+Kitchen Circuit,Other,680.045
+Kitchen Circuit ,Other,1165.1499999999999
+Kitchen Circuit 1,Other,1365.583
+Kitchen Circuit 2,Other,5675.809
+Kitchen Circuits,Other,315.908
+Kitchen Countertop Outlets,Other,1066.598
+Kitchen Disposal,Appliances,0.637
+Kitchen East,Other,1594.579
+Kitchen GFCI Outlet,Other,311.338
+Kitchen GFCI Outlets ,Other,375.223
+Kitchen Heater,Heating,0.008
+Kitchen Hood,Other,30.589
+Kitchen Island,Other,21.018
+Kitchen Lighting,Other,3315.179
+Kitchen Lights,Other,6014.999000000001
+Kitchen Lights ,Other,607.9399999999999
+"Kitchen Lights & Outlets, Salon Lights",Other,626.159
+Kitchen Lights + Pantry ,Other,228.031
+Kitchen Lights And Bathroom Radiant Heating,Other,7836.5109999999995
+Kitchen Lights And Outlets,Other,5088.369000000001
+"Kitchen Lights, Fridge, And Outlets",Other,3357.449
+Kitchen Outlet By Lights & Basement Outlets,Other,4537.8949999999995
+Kitchen Outlet Fridge,Other,386.526
+Kitchen Outlet Opposite Of Sink,Other,566.879
+"Kitchen Outlet, Etc.",Other,3941.5570000000002
+Kitchen Outlet: Left Side Of Sink Only ,Other,36.31
+Kitchen Outlet2,Other,1955.947
+Kitchen Outlets,Other,30891.244
+Kitchen Outlets ,Other,2223.611
+"Kitchen Outlets - Refrigerator, Dishwasher, Hood, Phone",Other,2042.744
+Kitchen Outlets + Fridge ,Other,1123.512
+Kitchen Outlets 1,Other,2894.887
+Kitchen Outlets 2,Other,1195.953
+Kitchen Outlets East ,Other,80.582
+"Kitchen Outlets Under Sink, Counter, Outside Closets",Other,355.773
+Kitchen Outlets W/ Fridge,Other,783.957
+Kitchen Outlets West ,Other,319.467
+Kitchen Plug,Other,271.504
+Kitchen Plug-Ins,Other,356.532
+Kitchen Plug-ins ,Other,899.821
+Kitchen Plugs,Other,12423.758
+Kitchen Plugs ,Other,1019.874
+Kitchen Plugs - East Wall,Other,1407.393
+Kitchen Plugs 1,Other,96.311
+Kitchen Plugs 2,Other,2764.631
+Kitchen Plugs 3,Other,369.671
+Kitchen Receptacles,Other,1439.866
+Kitchen Receptacles 1,Other,887.6619999999999
+Kitchen Receptacles 2,Other,204.058
+Kitchen Refrigerator ,Appliances,45.759
+Kitchen Small Appliances,Other,154.559
+"Kitchen, 1st Flr Hallway, And Dining Lights",Other,979.782
+"Kitchen, Back Porch Lights",Other,5036.889
+"Kitchen, Dining, Deck Flood Lights",Other,387.334
+"Kitchen, Dining, Family Room Outlets",Other,2281.514
+"Kitchen, Garage",Other,492.698
+"Kitchen, Island, Nook",Other,156.278
+Kitchen/aisle Outlet,Other,74.261
+Kitchen/Dining,Other,1971.614
+Kitchen/dining Lights,Other,664.543
+Kitchen/Dining Outlets,Other,176.757
+Laundry,Other,107.638
+Laundry Lights + Master Bth Lights And Fan,Other,512.7470000000001
+Laundry Plug,Other,57.356
+Laundry Room,Other,810.432
+Laundry Room Lights,Other,699.867
+Laundry Room Lights And Outlets,Other,349.149
+"Laundry Room Lights, Family Room Outlet, And Master Outlets",Other,837.89
+Laundry Room Lights/back Porch,Other,204.701
+Laundry Room Outlet ,Appliances,359.019
+Laundry Room Outlets,Other,99.474
+Laundry Room Outlets ,Other,441.816
+Library Outlets,Other,1918.393
+Light,Other,804.087
+Light & Plugs,Other,3207.784
+Light #2,Other,7049.299
+Lighting,Other,18276.959
+Lighting ,Other,4320.799
+Lighting - All Bedrooms,Other,910.0550000000001
+Lighting 1,Other,321.59000000000003
+Lighting 2,Other,2477.649
+Lighting 3,Other,13.578000000000001
+Lighting 4,Other,281.426
+Lighting 5,Other,8075.686000000001
+Lighting 6,Other,63.817
+"Lighting Bdrm 2, Bth 1, Mst Bth",Other,275.911
+Lighting Circuit,Other,2260.1620000000003
+Lighting Circuit. Could Also Contain Outlets,Other,1641.601
+Lighting Den,Other,2307.783
+Lighting Mst Bdrm,Other,2348.045
+Lighting North Basement,Other,8793.756
+Lighting Over Sink,Other,1147.567
+"Lighting, Garage & Rec Room",Other,3049.278
+Lights,Other,34035.816999999995
+Lights ,Other,14146.988
+Lights & Miscellaneous,Other,735.446
+Lights & Outlets 1,Other,527.082
+Lights & Outlets 2,Other,144.639
+Lights & Outlets In Master Bed & Bath,Other,1347.606
+Lights & Plugs,Other,2810.128
+Lights & Plugs 1,Other,73.121
+Lights & Plugs 2,Other,98.254
+Lights & Plugs 3,Other,170.523
+Lights & Plugs 4,Other,2975.247
+Lights + Plugs,Other,3138.92
+Lights + Water Heater,Other,406.999
+Lights 1,Other,889.357
+Lights 10,Other,642.182
+Lights 11,Other,36.707
+Lights 12,Other,633.456
+Lights 2,Other,7821.915
+Lights 3,Other,0.001
+Lights And Outlets,Other,23196.665999999994
+Lights And Outlets And Ceiling Fan,Other,1354.02
+Lights And Plug North End,Other,1527.359
+Lights And Plugs,Other,1553.879
+Lights And Plugs 1,Other,6300.164
+Lights And Plugs 2,Other,37.398
+Lights And Plugs 2&3,Other,5437.429
+Lights And Plugs 3,Other,225.93
+Lights And Plugs 4,Other,595.312
+Lights And Plugs 4&5,Other,9484.407
+Lights And Plugs 5,Other,498.423
+Lights And/or Outlets For Multiple Rooms,Other,778.1560000000001
+Lights And/or Outlets In Beds & Baths,Other,1032.042
+"Lights In Living, Dining, Kitchen, In Front Of Bathroom",Other,351.27
+Lights In Utility Area,Other,734.35
+"Lights, Kitchen, Dining Rm",Other,1056.272
+"Lights, LR/Dining",Other,404.476
+"Lights, Master Bed Heater, TV Room",Other,1157.246
+"Lights, Recp Master Bd Rm & Storage",Other,300.561
+Lights/kitchen,Other,2689.329
+Lights/outlets,Other,2997.387
+Lights/Outlets,Other,3.186
+Lights/plugs,Other,2883.332
+Lights/smoke Alarm,Other,256.535
+"Likely Lighting In Laundry, Office, Upstairs Bath",Other,2409.3
+Lites,Other,10159.767
+Lites - 2nd & 3rd Floor,Other,1504.084
+Lites - 2nd Floor,Other,2205.489
+Lites - Basement,Other,143.215
+Lites / West Attics,Other,1726.458
+Lites & Plugs,Other,1941.315
+Liv - FBRM - GFCI,Other,53.297
+Living Area,Other,1056.778
+"Living Rm Lights, Fam Rm Lights, Recp",Other,1030.536
+Living Rm Wall,Other,409.869
+"Living Rm, Kitchen & Garage Lights ",Other,235.689
+"Living Rm, Porch, Ext GFI",Other,1484.02
+Living Room,Other,27824.93
+Living Room & Middle Bed,Other,7700.083
+Living Room And Entrance Lights,Other,124.739
+Living Room External Wall Outlets/garage Lights,Other,1314.816
+Living Room Lights,Other,893.025
+Living Room Lights And Outlets,Other,5903.915
+Living Room Outlets,Other,9970.651
+Living Room Plugs,Other,13.44
+Living Room Plugs & Garage Plugs,Other,897.176
+Living Room Radiant Ceiling Heat,Heating,24.039
+Living Room Receptacles,Other,2105.507
+Living Room Wall Heating Units ,Other,2014.611
+"Living Room, Mud Room",Other,1616.812
+"Living Room, Patio, And Laundry Room Lights",Other,4697.53
+Living Room/Ext Outlets,Other,636.556
+Living Room/south Bedroom Circuit 1,Other,1926.91
+Living Room/south Bedroom Circuit 2,Other,503.88300000000004
+Living-Dining Heat ,Heating,0.12000000000000001
+Living/ Main Light Kitchen Lights/ Liv Plugs,Other,1656.945
+"Lt HW & Door Bell, Old Washer Outlet",Other,141.427
+Lwr Lvl Furnace ,Heating,35.218
+M. Bath/M. Bed/Bed 2 Lts,Other,1595.852
+Main Bath GFI,Other,9.925
+"Main Bath GFI, Kitchen Plugs",Other,255.957
+Main Door Lite,Other,52.084
+Main Floor Bathroom,Other,475.507
+Main Furnace ,Heating,298.94100000000003
+Main Kitchen Outlets,Other,1834.355
+Main Lights,Other,646.4979999999999
+Mast BR Heater,Heating,324.487
+Master,Other,1141.45
+Master - BR - C/o,Other,0.038000000000000006
+Master - BR - C/o ,Other,6.722
+Master Bath,Other,2015.634
+Master Bath & Bedroom,Other,71.729
+Master Bath And Front Bath Outlets,Other,603.451
+Master Bath GFI,Other,53.910000000000004
+Master Bath Heater,Heating,0.017
+Master Bath Jacuzzi ,Other,4.061
+Master Bath Lights,Other,1615.677
+Master Bath Outlets,Other,51.826
+Master Bath Plugs,Other,2518.23
+"Master Bath, Floor Heat",Heating,458.467
+"Master Bath, Hall Bath, Living/Kit Wall",Other,4390.365
+Master Bathroom,Other,435.829
+Master Bathroom - Outlet,Other,112.171
+Master Bathroom And Master Bedroom - Outlets,Other,483.427
+Master Bathroom Lights And Outlets,Other,109.73
+Master Bed,Other,659.5640000000001
+Master Bed / Main Floor Guest,Other,1597.275
+Master Bed Outlets,Other,4.638
+"Master Bed, Bath",Other,2646.069
+Master Bed/Bed #2,Other,480.397
+Master Bederoom,Other,193.424
+Master Bedroom,Other,4481.503
+Master Bedroom GFCI,Other,63.001
+Master Bedroom Lights And Outlets,Other,85.803
+Master Bedroom Rec,Other,634.1800000000001
+Master Bedroom Sub Panel,Other,8556.458999999999
+Master Bedroom Subpanel,Other,1334.543
+"Master Bedroom, Bedroom",Other,639.915
+"Master Bedroom, Master Bath, Living Room Outlets",Other,398.492
+Master Bedroom/bathroom,Other,614.011
+Master Suite,Other,632.4929999999999
+Mechanical Room,Other,7.003
+Mechanical Room Sub Panel ,Other,7463.8099999999995
+Micro,Appliances,88.396
+Micro,Other,192.94
+Micro GFCI,Other,474.277
+Microwave,Appliances,9935.513000000003
+Microwave,Other,7718.861
+Microwave ,Appliances,24.46
+Microwave & Hood,Appliances,109.149
+Microwave + Other,Appliances,406.241
+Microwave And Hood,Other,269.233
+Microwave And Kitchen Outlets,Appliances,1766.796
+Microwave Hood,Other,124.741
+Microwave Outlet,Other,102.293
+Microwave Outlets,Appliances,254.51500000000001
+Microwave Oven,Appliances,63.316
+Microwave Oven ,Appliances,30.294999999999998
+"Microwave, Hood, And Range Display",Other,509.153
+Mini Split,Heating,19370.885
+Motor Home,Other,2.676
+"N & S Kitchen Outlets, Washer, Computer",Other,647.701
+N/A - Air Handler,AC,6225.343
+N/A - Furnace,Heating,515.655
+Natural Gas - Stove/Fireplace,Heating,1028.662
+Natural Gas Furnace Fan ,Heating,9401.338
+NE Kitchen Plugs,Other,24.922
+New Comp. Plug,Other,4.953
+Nook,Other,601.517
+Nook Plugs,Other,886.059
+"North Bedroom, Guest Bath, Master Bath Vanity",Other,484.815
+"North/west Bath Plugs, Soffit Plugs South",Other,228.494
+Nutone Fan,Other,62.714
+NW Corner Of House,Other,3695.953
+O/s Lts Garage And Down Rain,Other,1029.558
+Office,Other,2861.208
+Office & Master Bath,Other,754.529
+Office And Computer,Other,43.096
+"Office Kitchen Lights, Middle & Rear Bedroom",Other,5444.595
+Office Outlets,Other,1579.789
+"Office, Garage, Overhead Door",Other,7878.44
+Office/Shed Outlets,Other,61.299
+Oil/Kerosene - Boiler,Heating,539.875
+Oil/Kerosene - Furnace,Heating,799.345
+Old Dining Room Heat Cct,Heating,0
+Old Dishwasher Cct,Other,0
+Old Oven Outlet,Other,2.095
+On Beds ,Other,89.637
+Open Heat,Other,0
+Outdoor,Other,911.846
+Outdoor Freezer,Appliances,0.44
+Outdoor Outlet,Other,139.207
+Outdoor Shed,Other,450.64799999999997
+Outhlets,Other,313.451
+Outlet,Other,480.778
+Outlet For Chest Freezer And Other Misc,Appliances,1138.285
+Outlet For Garage Freezer,Other,47.506
+Outlet Next To Refrigerator,Other,397.402
+Outlet Used For Refrigerator And Window AC,Other,351.935
+Outlets,Other,7388.958
+Outlets 1,Other,200.199
+Outlets 2,Other,131.795
+Outlets And Lights,Other,5.995
+"Outlets In Mud Room, Contains 1 Upright And 1 Chest Freezer",Other,4476.247
+Outlets In Utility Area,Other,955.0780000000001
+Outside,Other,30.177000000000003
+Outside Lights,Other,1742.259
+Outside Lights And Outlets,Other,786.954
+Outside Outlet ,Other,92.46
+Outside Outlet & Other Misc,Other,1670.413
+Outside Outlet: Back Porch Only,Other,15.864
+Outside Outlet: N Side Of House Only,Other,203.01700000000002
+Outside Plug,Other,22.249000000000002
+Outside Plugs,Other,302.528
+Outside Receptacle,Other,1763.981
+Outside Receptcle,Other,295.152
+Outside Receptical,Other,84.45599999999999
+Outside Water Feature,Other,0
+Panel B ,Other,17843.536
+Panel Cct 13a,Other,0.005
+Panel Cct 13b,Other,115.215
+Panel Cct 14b,Other,140.028
+Panel Cct 15b,Other,1526.155
+Panel Label = Freezer,Other,107.423
+Panel Label: [Blank],Other,28.566
+Panel Label: Bath GFI,Other,1.275
+Panel Label: Bonus Room,Other,1226.194
+Panel Label: East Bed AF,Other,158.439
+Panel Label: Entertainment,Other,677.103
+Panel Label: Entry,Other,880.15
+Panel Label: Family Plugs,Other,789.792
+Panel Label: Family Rm. Lts. Plugs,Other,388.42
+Panel Label: Garage Door Opener,Other,842.919
+Panel Label: Jet Tub,Other,168.752
+Panel Label: Kitchen Lts.,Other,264.029
+Panel Label: Master Bath/Powder Bath,Other,177.433
+Panel Label: Master Bed AF,Other,264.97200000000004
+Panel Label: Up Hall/Bath,Other,175.163
+Panel Label: Vacuum,Other,20.593
+Panel Label: X-Mas,Other,39.485
+Pantry Freezer Plug,Other,146.558
+Photo ,Other,10.177
+Pool,Other,22.049
+Post Lights & Outside Light,Other,1594.59
+Powder Room,Other,66.891
+Powder Room GFCI,Other,21.12
+Printer + Outside Gar Rec,Other,10.54
+Propane - Water Heater - Fossil Fuel Condensing,Other,123.43
+Pump,Other,0.559
+Radiant Ceiling Heat 1,Heating,927.531
+Radiant Ceiling Heat 2,Heating,54.91
+Range,Appliances,6452.374000000001
+Range,Other,0
+Range ,Appliances,397.673
+Range Hood,Appliances,61.751
+Range Hood/Wall Socket ,Other,89.15
+Range Oven ,Appliances,468.951
+Rec Rm Outlets,Other,147.186
+Rec Room,Other,281.10699999999997
+Rec Room Outlets,Other,3260.839
+Rec Room Plus Rec SW Refrigerator,Other,284.679
+Receptacle Near Stairway,Other,3.251
+Receptacles,Other,190.597
+"Recp Kitchen, Dining Rm",Other,1098.17
+"Refer Outlets, Golf Shop",Other,959.331
+"Refrig, Opposite-Side Outlets",Other,1545.262
+Refrigerator,Appliances,2019.0430000000001
+Refrigerator ,Other,683.188
+"Refrigerator, Downstairs Bath",Other,592.421
+"Refrigerator, Garbage Disposal, Wall Plugs",Other,0.006
+Refrigerator/freezer,Appliances,1891.22
+Rm Above,Other,9.559
+Roof PV,Solar,0
+RV,Other,258.884
+RV Lights,Other,131.471
+RV Plug,Other,188.094
+RV Power,Other,44.81699999999999
+Salon Outlets,Other,480.072
+Sauna ,Other,0.04
+"SE Small Master- Except One Outlet On Inside Wall By Closet/hall Bath, Hall Lights And Outlet, And Dinette Chandelier",Other,1953.4450000000002
+Second Stage Of Furnace Heat ,Heating,27392.284
+Septic,Other,4874.4259999999995
+Septic Floats ,Other,1.426
+Septic Tank Pump ,Other,10.302999999999999
+Service Plug,Other,127.896
+Shed,Other,3055.201
+Shop,Other,13490.3
+Shop Heat,Heating,637.879
+Shop Plugs 1,Other,1895.375
+Shop Plugs 2,Other,195.975
+Shop Receptacle On Outside Walls,Other,45.763
+Shop Sub Panel,Other,2382.694
+Shop Subpanel,Other,4121.027
+Show NW Basement Outlets,Other,114.503
+Sink-Side Outlets,Other,243.945
+Sitting Room,Other,357.558
+Small Appliance,Other,117.751
+Small Appliances,Other,5868.177000000001
+Small Appliances 2,Other,1172.156
+"Small Bathroom, Hall Lights",Other,475.01800000000003
+Smoke ,Other,56.258
+Smoke Alarms,Other,24.226
+Smoke Detectors,Other,54.622
+Smoke Detectors And Bedroom Outlets,Other,161.427
+Snow Melt,Other,0.025
+"Soffit Plugs North, Bath/hall Lighting",Other,101.461
+Solar,Solar,0
+Solar Array,Solar,0
+Solar Panel And Inverter,Solar,0
+Solar Plugs,Other,3801.005
+Solar Power,Solar,0
+Solar PV,Solar,0
+"South Bedrooms, Master Bath, Master Closet",Other,148.08
+South Dining Room,Other,1061.787
+South Dining Room Outlets,Other,325.076
+Spa,Other,15174.718
+Space Heater,Heating,2760.794
+Sprinkler,Other,0.062
+"Sprinkler, Outdoor Plug, And Garage Outlet",Other,287.745
+Stair Lights,Other,59.707
+"Stairway, Bed 2",Other,440.387
+Stereo & Other Electronics,Other,2748.623
+Storage Room Lights And Outlets,Other,0.9309999999999999
+Storeroom,Other,351.794
+Stove,Appliances,142.944
+Stove Exhaust,Other,40.866
+"Stove Hood, Etc.",Other,359.404
+Stove: Electricoven:  Electric - Stove/Oven,Appliances,102623.85499999991
+Stove: Electricoven:  Electric - Stove/Oven,Other,142.061
+Stove: Electricoven:  No Oven - Stove/Oven,Appliances,1650.996
+Stove: Gasoven:  Dual Gas/Electric - Stove/Oven,Appliances,565.379
+Stove: Gasoven:  Electric - Stove/Oven,Appliances,3269.4080000000004
+Stove: Gasoven:  Gas - Stove/Oven,Appliances,1827.5710000000001
+Stove: Gasoven:  No Oven - Stove/Oven,Appliances,1197.795
+Stove: No Stoveoven:  Electric - Stove/Oven,Appliances,4306.6630000000005
+Stove: No Stoveoven:  Electric - Stove/Oven,Other,0
+Stove: Propaneoven:  Propane - Stove/Oven,Appliances,536.102
+Studio AC Plug,Other,0
+Studio Plugs,Other,78.417
+Sub Main,Other,11065.543
+Sub Panel,Other,1751.677
+Sub Panel Feed For Shop,Other,27124.295
+Subfeed To Garage/shop,Other,5239.74
+Sump Pump,Other,8.237
+Sump Pump For Basement Bathroom,Other,80.041
+Sun Room Heater,Heating,11972.227
+"SW Bedroom Studio, Small Blue Bedroom, Inside Wall Outlet And Master, Front Porch Outlet",Other,3984.6639999999998
+Tankless Electric Hot Water Heater,Heating,547.719
+Test Circuit ,Other,90.337
+Toaster GFCI,Other,1497.849
+Top Floor North Plugs,Other,96.872
+Top Floor South Plugs,Other,855.9459999999999
+Trash Compactor,Other,126.173
+Trash Compactor ,Other,0.085
+Tub,Other,16.775
+TV + Others,Other,3496.184
+TV Play,Other,846.402
+TV Room,Other,35.275
+TV Room & Kitchen Counter Outlets & Refrigerator,Other,1670.14
+"TV Room Outlets, East Wall",Other,0
+"Tv Room, Living Room",Other,1148.199
+TV/VCR Outlet Only ,Other,670.707
+Unclear ,Heating,1624.158
+Unclear ,Other,0
+Under Counter Lights,Other,1756.006
+Unknown,Other,17391.879
+Unknown ,Other,3478.096
+Unknown - Dryer,Appliances,10831.249
+"Unknown - Labeled Lighting, Could Also Include Outlets",Other,991.29
+"Unknown - Lights, But May Also Include Outlets",Other,2087.001
+Unknown - Mini-Split AC,Heating,0
+Unknown - Packaged AC,AC,4845.4220000000005
+Unknown - Packaged AC,Other,478.34999999999997
+Unknown - Water Heater - Unknown,Heating,8064.864
+"Unknown , Likely Furnace",Other,207.818
+Unknown Cct,Other,178.753
+Unknown Circuit,Other,1598.709
+Unknown Circuit 1,Other,518.58
+Unknown Circuit 2,Other,43.056
+Unknown Device,Other,1512.988
+Unknown Device Name,Appliances,868.591
+Unknown Device Name,Heating,41006.141
+Unknown Device Name,Other,111249.59499999994
+Unknown Device Name 1,Other,0.5840000000000001
+Unknown Device Name 2,Other,0.452
+Unknown Equipment,Other,3497.099
+Unknown Fuel Type - Bathroom Vent,Other,12040.834
+Unknown Fuel Type - Central Vac,Other,772.135
+Unknown Fuel Type - Dishwasher,Appliances,50072.585999999945
+Unknown Fuel Type - Dishwasher,Other,0.10200000000000001
+Unknown Fuel Type - Heater,Heating,3544.29
+Unknown Fuel Type - Hot Tub,Other,17206.839
+Unknown Fuel Type - Irrigation Pump,Other,883.7239999999999
+Unknown Fuel Type - Kiln ,Other,4055.598
+Unknown Fuel Type - Kitchen Vent,Other,4364.732
+Unknown Fuel Type - Refrigerator/Freezer,Appliances,118919.49399999998
+Unknown Fuel Type - Refrigerator/Freezer,Other,8144.713
+Unknown Fuel Type - Sauna,Other,51.814
+Unknown Fuel Type - Washer,Appliances,25195.92699999999
+Unknown Fuel Type - Washer,Other,1517.769
+Unknown Fuel Type - Water Pressure Tank,Other,321.262
+Unknown Fuel Type - Well Pump,Other,413.49699999999996
+Unknown Fuel Type - Whole House Fan,Other,1803.636
+Unknown Lights And Outlets,Other,168.121
+Unknown Unplugged Circuit,Other,52.8
+Unlabeled 1,Other,591.488
+Unlabeled 2,Other,1107.587
+Up Bath Hall Utility Stair,Other,1529.857
+Uphall Bedroom,Other,383.36400000000003
+Upper Bath,Other,0
+Upper South Bedroom + Attic,Other,185.041
+Upstairs Bath,Other,1362.314
+"Upstairs Bath Plug, Living Room",Other,437.631
+Upstairs Bathroom Outlets,Other,70.408
+Upstairs Bedroom,Other,673.409
+Upstairs Bedroom Outlets,Other,149.877
+Upstairs Except Room W/ Router,Other,1458.964
+"Upstairs Hall, Bath, Utility",Other,23.595
+"Upstairs Hall, Master Bed, Bath Lights",Other,812.333
+Upstairs Hallway Up Br ,Other,130.043
+Upstairs Heat 1,Heating,1843.641
+Upstairs Heat 2,Heating,1733.142
+Upstairs Lights,Other,1484.492
+Upstairs Lights & Outlets,Other,1474.694
+Upstairs Lights And Outlets,Other,281.755
+Upstairs Lights/Plugs,Other,2594.339
+Upstairs Living Room,Other,2675.305
+Upstairs Outlets,Other,684.852
+Upstairs Plugs,Other,21.716
+"Upstairs, Microwave, Phone",Other,94.95
+Util + Kit Ceiling Light,Other,1048.583
+Utility,Other,1486.323
+Utility Back Door Rec Room Plugs Kitchen Plugs,Other,225.912
+Utility Light,Other,31.128999999999998
+Utility Outlets,Other,29.753
+Utility Plugs,Other,4.725
+Utility Rm Htr & ?,Other,0
+Utility Room,Other,60.691
+Utility Room Plug,Other,181.174
+"Utility, Fam, Hall",Other,3002.033
+Utility/Entry/Hall Lts,Other,2129.618
+Vacume,Other,0.018
+Various ,Other,1434.105
+Various Appliances,Other,2728.279
+Various Appliances - Kitchen Outlets?,Other,3785.387
+Various Lighting,Other,2935.779
+Various Lights,Other,3076.487
+Various Outlets,Other,6615.701
+W Bedrooms,Other,4409.76
+Wall Heater,Heating,6.3
+Wall Outlet Kitchen,Other,24.191000000000003
+Wall Outlets To Edward's Room & Edward's Room & Laundry Pointer ,Other,783.719
+Warming Drawer,Other,3.593
+Wash Machine,Other,154.105
+Wash Room,Other,161.11100000000002
+Washer,Appliances,6604.275
+Washer,Other,4339.893
+Washer & Dryer,Other,2115.735
+Washer + Other,Other,95.26100000000001
+Washer + Others,Appliances,49.699
+Washer + Others,Other,35.755
+Washer Dryer,Other,709.241
+Washer Outlet,Other,3694.34
+Washer Outlet ,Appliances,48.361
+"Washer, Refrigerator, Etc",Other,1396.871
+Washer/Dryer Outlet Only,Other,229.751
+Washing Mach,Appliances,43.01
+Washing Mach,Other,431.255
+Washing Machine/Laundry Room Outlet,Appliances,296.882
+Water Feature,Other,1197.421
+Water Fountain,Other,266.524
+Water Heater,Heating,38236.247
+Water Heater ,Heating,8482.24
+Water Heater + Others,Heating,59.599000000000004
+Water Heater Closet Spare,Other,13.954
+Water Heating,Heating,702.554
+Water Softener,Other,61.762
+Water Source Heat Pump,Heating,14798.958
+Water Tank,Other,639.739
+WaterHeating,Heating,8134.026999999999
+Welder Plug,Other,0
+Well Pump,Other,747.343
+Well Pump & Other,Other,1254.964
+Well Pump + Wrt Press Switch,Other,1479.186
+Wguest Wing L&Plugs ,Other,237.776
+Whirlpool Tub,Other,7.9590000000000005
+Wood  - Stove/Fireplace,Heating,1.5030000000000001
+Workbench,Other,5737.626
+Xmas,Other,16.527
