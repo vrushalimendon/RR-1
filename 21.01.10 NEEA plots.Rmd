@@ -297,7 +297,69 @@ power_data_same_sites %>%
           axis.text.x = element_blank(),
           axis.ticks.x = element_blank())+
   labs(title = "2019 EULR Average Power Used by Heaters (Same Sites)", y = "Load/Energy (kWh)", x = NULL, fill = NULL, caption = "*Ducted heatpumps are used for air conditioning at some sites,\nexplaining the higher load/energy in the Summer months.")
+
+
+heating <- NULL
+
+for (month in mon_list){
+  heating <- read_month_data(month, "/power/") %>%
+  left_join(points, by = c("ee_site_id", "regname")) %>%
+  left_join(sites, by = c("ee_site_id")) %>%
+  filter(ee_site_id %in% jan_properties, circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>%
+  mutate(min_t = min_t + hours(tz_utc_offset),
+    month=str_extract(min_t, "(?<=-)[0-9]{2}"),
+    hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+    date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>%
+  group_by(ee_site_id, date, month, hour, circuit_label_type_desc) %>%
+  summarize(kW_hour = sum(power)) %>%
+  rbind(heating)
+}
+
+heating2 <- heating %>% 
+    mutate(month = case_when(
+      month == "01" ~ "Jan",
+      month == "02" ~ "Feb",
+      month == "03" ~ "Mar",
+      month == "04" ~ "Apr",
+      month == "05" ~ "May",
+      month == "06" ~ "Jun",
+      month == "07" ~ "Jul",
+      month == "08" ~ "Aug",
+      month == "09" ~ "Sep",
+      month == "10" ~ "Oct",
+      month == "11" ~ "Nov",
+      month == "12" ~ "Dec"))
+
+heating2$month <- factor(heating2$month, levels = month.abb)
+
+heating2 %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
+  ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_hour, color=circuit_label_type_desc))+
+  facet_wrap(~month)+
+  scale_color_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
+                    labels = c("Ducted Heatpump (34 sites)", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Fan Energy) (24 sites)", "Other Zonal Heat (11 sites)"))+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())+
+  labs(title = "2019 EULR Power Used by Heaters", y = "Load/Energy (kWh)", x = NULL, color = NULL)
+
+heating2 %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
+  ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_hour, color=circuit_label_type_desc), size = .3)+
+  facet_wrap(~month)+
+  scale_color_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
+                    labels = c("Ducted Heatpump (34 sites)", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Fan Energy) (24 sites)", "Other Zonal Heat (11 sites)"))+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())+
+  ylim(0, 15)+
+  labs(title = "2019 EULR Power Used by Heaters", subtitle = "This plot does not include outliers over 15 kWh", y = "Load/Energy (kWh)", x = NULL, color = NULL)
 ```
+
 
 
 
@@ -322,7 +384,7 @@ power_data_same_sites %>%
 ```
 
 
-```{r}
+```{r AC plot}
 power_data_same_sites %>% 
   filter(category == "AC") %>% 
   group_by(month, date, hz, cz) %>% 
@@ -339,6 +401,151 @@ power_data_same_sites %>%
   labs(title = "2019 EULR Average Power Used by All Cooling", y = "Load/Energy (kWh)", x = "Mean Outdoor Temperature (F)", color = "Cooling Zone", caption = "Each dot represents the average power and temperature, respectively, for one day")
 
 ```
+
+```{r}
+jan_power <- read_month_data("2019_Q1_v3/Jan", "/power/") %>% 
+  left_join(points, by = c("ee_site_id", "regname")) %>% 
+  left_join(sites, by = c("ee_site_id")) %>% 
+  left_join(read_month_data("2019_Q1_v3/Jan", "/temperature/"), by = c("ee_site_id", "min_t")) 
+
+jan_power2 <- jan_power%>% 
+  na.omit() %>% 
+  left_join(temp_points, by = c("ee_site_id", "transmitter_code")) %>% 
+  filter(ee_site_id %in% jan_properties, circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat"), interior_exterior==2) %>% 
+  mutate(min_t = min_t + hours(tz_utc_offset),
+    month=str_extract(min_t, "(?<=-)[0-9]{2}"), 
+    hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+    date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+  group_by(ee_site_id, date, month, hour, circuit_label_type_desc) %>% 
+  summarize(kW_hour = sum(power), mean_outdoor_temp = mean(temp)) %>% 
+  filter(month == "01") %>% 
+  mutate(month = "Jan")
+
+aug_power <- read_month_data("2019_Q3_v3/Aug", "/power/") %>% 
+  left_join(points, by = c("ee_site_id", "regname")) %>% 
+  left_join(sites, by = c("ee_site_id")) %>% 
+  left_join(read_month_data("2019_Q3_v3/Aug", "/temperature/"), by = c("ee_site_id", "min_t")) %>% 
+  na.omit() %>% 
+  left_join(temp_points, by = c("ee_site_id", "transmitter_code")) %>% 
+  filter(ee_site_id %in% jan_properties, circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat"), interior_exterior==2) %>% 
+  mutate(min_t = min_t + hours(tz_utc_offset),
+    month=str_extract(min_t, "(?<=-)[0-9]{2}"), 
+    hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+    date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+  group_by(ee_site_id, date, month, hour, circuit_label_type_desc) %>% 
+  summarize(kW_hour = sum(power), mean_outdoor_temp = mean(temp)) %>% 
+  filter(month == "08") %>% 
+  mutate(month = "Aug")
+
+
+jan_plot <- jan_power2 %>% 
+  #filter(kW_hour > 0.1) %>% 
+  mutate(circuit_label_type_desc = case_when(
+    circuit_label_type_desc == "Electric Baseboard Heaters" ~ "Electric\nBaseboard Heaters",
+    circuit_label_type_desc == "Gas Furnace (Component)" ~ "Gas Furnace\n(Component)",
+    TRUE ~ circuit_label_type_desc)) %>% 
+  ggplot(aes(x=mean_outdoor_temp, y = kW_hour))+
+  geom_point(color = "#257BA0", size = .75)+
+  facet_wrap(~circuit_label_type_desc, nrow = 1)+
+  ggplot2::theme_bw() +
+  scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "January Power Used by Different Heaters by Temperature", y = "Load/Energy (kWh)", x = NULL) #+
+  #theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+aug_plot <- aug_power %>% 
+  #filter(kW_hour > 0.1) %>% 
+  mutate(circuit_label_type_desc = case_when(
+    circuit_label_type_desc == "Electric Baseboard Heaters" ~ "Electric\nBaseboard Heaters",
+    circuit_label_type_desc == "Gas Furnace (Component)" ~ "Gas Furnace\n(Component)",
+    TRUE ~ circuit_label_type_desc)) %>% 
+  ggplot(aes(x=mean_outdoor_temp, y = kW_hour))+
+  geom_point(color = "#257BA0", size = .75)+
+  facet_wrap(~circuit_label_type_desc, nrow = 1)+
+  ggplot2::theme_bw() +
+    scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "August Power Used by Different Heaters by Temperature", y = "Load/Energy (kWh)", x = "Mean Outdoor Temperature (F)")
+
+
+jan_plot / aug_plot
+```
+
+
+```{r}
+# temp_heating <- NULL
+# 
+# for (month in mon_list){
+#   temp_heating <- read_month_data(month, "/power/") %>% 
+#   left_join(points, by = c("ee_site_id", "regname")) %>% 
+#   left_join(sites, by = c("ee_site_id")) %>% 
+#   left_join(read_month_data(month, "/temperature/"), by = c("ee_site_id", "min_t")) %>% 
+#   na.omit() %>% 
+#   left_join(temp_points, by = c("ee_site_id", "transmitter_code")) %>% 
+#   filter(ee_site_id %in% jan_properties, circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump"), interior_exterior==2) %>% 
+#   mutate(min_t = min_t + hours(tz_utc_offset),
+#     month=str_extract(min_t, "(?<=-)[0-9]{2}"), 
+#     hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+#     date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+#   group_by(ee_site_id, date, month, hour, circuit_label_type_desc) %>% 
+#   summarize(kW_hour = sum(power), mean_outdoor_temp = mean(temp)) %>% 
+#   rbind(temp_heating)
+# }
+
+temp_heating %>% 
+  filter(kW_hour < 20) %>% 
+  mutate(temp_cat = case_when(
+    mean_outdoor_temp <= 15 ~ "< 15",
+    mean_outdoor_temp <= 25 ~ "15-25",
+    mean_outdoor_temp <= 35 ~ "25-35",
+    mean_outdoor_temp <= 45 ~ "35-45",
+    mean_outdoor_temp <= 55 ~ "45-55",
+    mean_outdoor_temp <= 65 ~ "55-65",
+    mean_outdoor_temp <= 75 ~ "65-75",
+    mean_outdoor_temp <= 85 ~ "75-85",
+    mean_outdoor_temp <= 95 ~ "85-95",
+    mean_outdoor_temp > 95 ~ "95+")) %>% 
+  #filter(kW_hour > 0.1) %>% 
+  ggplot(aes(x=temp_cat, y = kW_hour))+
+  geom_boxplot(color = "#257BA0", size = .75)+
+  facet_wrap(~circuit_label_type_desc, nrow = 2)+
+  ggplot2::theme_bw() +
+  #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  #ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "Power Used by Heaters by Temperature", y = "Load/Energy (kWh)", x = "Temperature (F)") 
+
+temp_heating %>% 
+  filter(kW_hour < 20) %>% 
+  mutate(temp_cat = case_when(
+    mean_outdoor_temp <= 15 ~ "< 15",
+    mean_outdoor_temp <= 25 ~ "15-25",
+    mean_outdoor_temp <= 35 ~ "25-35",
+    mean_outdoor_temp <= 45 ~ "35-45",
+    mean_outdoor_temp <= 55 ~ "45-55",
+    mean_outdoor_temp <= 65 ~ "55-65",
+    mean_outdoor_temp <= 75 ~ "65-75",
+    mean_outdoor_temp <= 85 ~ "75-85",
+    mean_outdoor_temp <= 95 ~ "85-95",
+    mean_outdoor_temp > 95 ~ "95+")) %>% 
+  #filter(kW_hour > 0.1) %>% 
+  ggplot(aes(x=temp_cat))+
+  geom_bar(fill = "#257BA0", stat = "count")+
+  facet_wrap(~circuit_label_type_desc, nrow = 2)+
+  ggplot2::theme_bw() +
+  #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  #ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "Power Used by Heaters by Temperature", y = "Number of Observations", x = "Temperature (F)") 
+
+```
+
 
 ```{r LEFT OFF HERE!!!!}
 power_data_same_sites %>% 
@@ -380,14 +587,14 @@ power_data_same_sites %>%
 #     ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
 #                    plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))
 
-power_data2 %>% 
+power_data_same_sites %>% 
   group_by(hour, hz, cz) %>% 
   summarize(mean_kW = mean(mean_power)) %>% 
   mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz)) %>% 
   ggplot2::ggplot(aes(x=hour, y = mean_kW)) + 
   ggplot2::geom_line(size = 1.05, color = "#257BA0") +
   ggplot2::theme_bw() +
-  facet_grid(hz~cz)+
+  facet_grid(cz~hz)+
 
     #make breaks align with day breaks and clean labels
     ggplot2::scale_x_continuous(breaks=c(1, 6, 12, 18, 24))+
@@ -396,6 +603,35 @@ power_data2 %>%
     #customize fonts to those in RR style guide
     ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
                    plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))
+
+dat_text <- sites %>% filter(ee_site_id %in% jan_properties) %>% 
+  group_by(hz, cz) %>% 
+  summarize(num = n()) %>% 
+  mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz), 
+         label = str_c(num, " sites"))
+
+power_data_same_sites %>% 
+  group_by(hour, category, hz, cz) %>% 
+  #mutate(cz = as.factor(cz)) %>% 
+  summarize(mean_power = mean(mean_power)) %>% 
+  mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz)) %>% 
+  filter(!is.na(category), category != "Mains") %>% 
+  ggplot() + geom_bar(aes(x=hour, y=mean_power, fill=category), stat = "identity")+
+  facet_grid(cz~hz)+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "2019 EULR Average Power by Month by Circuit Category (Same Sites)", y = "Load/Energy (kWh)", x = "Hour", fill = NULL)+
+  #scale_fill_manual(values = c("#62B2B9", "#A06CB2", "#D42142", "#2B74A1", "#3F8F55", "#EBBA28"))
+  scale_fill_manual(values = c("#5BBCD6", "#FF0000", "#91A737", "#F49C00", "#32806E"),
+                    labels = c("AC (22 sites)", "Heating (73 sites)", "Other (73 sites)", "Solar (4 sites)", "Water Heaters (53 sites)"))+ #, "#257BA0"
+  ggplot2::scale_x_continuous(breaks=c(1, 6, 12, 18, 24))+
+  geom_label(data = dat_text, mapping = aes(x = 18, y = 5.8, label = label), alpha = .6)
+  # geom_label(data = dat_text, aes(x = 18, y = 5.5, label=label),
+  #                      label.size = NA,  
+  #                      label.padding=.1, 
+  #                      na.rm=TRUE,
+  #                      fill = alpha(c("white"),0.5))
 ```
 
 ```{r}
@@ -409,7 +645,7 @@ power_data_same_sites %>%
 
     #make breaks align with day breaks and clean labels
     ggplot2::scale_x_continuous(breaks=c(1, 6, 12, 18, 24))+
-    ggplot2::labs(title = "2019 EULR Home Energy Power Data by Month", subtitle = stringr::str_c("Average Hourly Total Consumption"), y = "Mean Power (kWh)", x = "Hour") +
+    ggplot2::labs(title = "2019 EULR Home Energy Power Data by Month", subtitle = stringr::str_c("Average Hourly Total Consumption"), y = "Load/Energy (kWh)", x = "Hour") +
 
     #customize fonts to those in RR style guide
     ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
@@ -512,7 +748,7 @@ c(1:5) %>%
 ```
 
 
-```{r}
+```{r treemap}
 power_sum <- NULL
 
 for (month in mon_list){
