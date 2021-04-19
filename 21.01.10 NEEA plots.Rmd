@@ -1106,5 +1106,30 @@ by_cat_all <- power_data2 %>%
 (dhw_all + by_cat_all ) / (dhw_same + by_cat_same)
 ```
 
+```{r}
+plot_hourly_data <- function(circuit_type){
+  circuit_type_data <- power_data_same_sites %>% 
+  filter(circuit_label_type_desc == circuit_type) %>% 
+  group_by(hour, circuit_label_type_desc) %>% 
+  summarize(mean_power = mean(mean_power)) %>% 
+    left_join(num_uses, by = "circuit_label_type_desc")
+  
+  num_circuit_type_uses <- unique(circuit_type_data$number)
+  
+  ggplot(circuit_type_data) + geom_line(group = 1, aes(x = hour, y = mean_power), color = "#93B83D", size = 1.1)+
+  theme_bw()+
+  labs(x= "Hour", y = "Load/Energy (kWh)", title = str_c("2019 EULR Average Hourly Power Usage — ", circuit_type, "s"), subtitle = str_c(circuit_type, "s reported at ", num_circuit_type_uses, " sites"))+
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+    ggplot2::scale_x_continuous(breaks=c(1, 6, 12, 18, 24))
+}
+
+appliances_other <- c("Clothes Dryer", "Clothes Washer", "Dishwasher", "Microwave", "Refrigerator/Freezer", "Stove/Oven/Range", "Electric Vehicle Charger", "Hot Tub")
+
+map(appliances_other, plot_hourly_data)
+
+
+
+```
 
 
