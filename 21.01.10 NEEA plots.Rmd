@@ -971,14 +971,37 @@ fall_power <- power_temp %>%
 
 
 ```{r}
-power_data2 %>%
+power_data_same_sites %>%
   filter(circuit_label_type_desc == "Lighting and/or Outlets") %>% 
   group_by(hour, month) %>% 
   summarize(mean_power = mean(mean_power)) %>% 
   ggplot() + geom_line(aes(x = hour, y = mean_power, color = month), size = 1.1)+
   scale_color_manual(values = c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00", "#CAB2D6", "#6A3D9A", "#d9d36a", "#B15928"))+
   theme_bw()+
-  labs(x= "Hour", y = "Mean Power (kWh)", title = "Hourly Lighting/Outlet Usage for a Given Month", subtitle = "Based off of NREL Figure 1", color = NULL)+
+  labs(x= "Hour", y = "Load/Energy (kWh)", title = "Hourly Lighting/Outlet Usage for a Given Month", subtitle = "Based off of NREL Figure 1", color = NULL)+
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  scale_x_continuous(breaks=c(1, 6, 12, 18, 24))
+
+power_data_same_sites %>%
+  filter(circuit_label_type_desc == "Lighting and/or Outlets") %>% 
+  group_by(hour, month) %>% 
+  summarize(mean_power = mean(mean_power)) %>% 
+  ggplot() + geom_line(aes(x = hour, y = mean_power), size = 1.1, color = "#93B83D")+
+  theme_bw()+
+  labs(x= "Hour", y = "Load/Energy (kWh)", title = "Hourly Lighting/Outlet Usage for a Given Month")+
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  facet_wrap(~month)+
+  scale_x_continuous(breaks=c(1, 6, 12, 18, 24))
+
+power_data_same_sites %>%
+  filter(circuit_label_type_desc == "Lighting and/or Outlets") %>% 
+  group_by(hour) %>% 
+  summarize(mean_power = mean(mean_power)) %>% 
+  ggplot() + geom_line(aes(x = hour, y = mean_power), size = 1.1, color = "#93B83D")+
+  theme_bw()+
+  labs(x= "Hour", y = "Load/Energy (kWh)", title = "Hourly Lighting/Outlet Usage")+
   ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
           plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
   scale_x_continuous(breaks=c(1, 6, 12, 18, 24))
