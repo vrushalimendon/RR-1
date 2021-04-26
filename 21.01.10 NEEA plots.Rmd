@@ -3,10 +3,6 @@ title: "Untitled"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r}
 library(dplyr)
 library(readr)
@@ -20,7 +16,6 @@ library(wesanderson)
 library(patchwork)
 library(ggtext)
 library(tidyr)
-library(treemap)
 library(readxl)
 ```
 
@@ -364,29 +359,6 @@ heating2 %>%
 ```
 
 
-
-
-```{r IGNORE}
-temp_avg3 <- temperature_data %>% 
-  group_by(date, cz, hz) %>% 
-  summarize(mean_temp =  mean(mean_outdoor_temp), median_temp = median(median_outdoor_temp))
-
-power_data_same_sites %>% 
-  filter(category == "Heating") %>% 
-  group_by(month, date, hz, cz) %>% 
-  summarize(mean_power = mean(mean_power)) %>% 
-  left_join(temp_avg3, by = c("date", "hz", "cz")) %>% 
-  mutate(cz = as.factor(cz), hz = as.factor(hz)) %>%   
-  ggplot() + geom_point(aes(x=mean_temp, y=mean_power, color = hz), size = .75)+
-  facet_wrap(~month)+
-  scale_color_manual(values = c("#FF0000", "#F2AD00", "#00A08A"))+
-  ggplot2::theme_bw() +
-  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
-          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
-  labs(title = "2019 EULR Average Power Used by All Heaters", y = "Mean Power (kWh)", x = "Mean Outdoor Temperature (F)", color = "Heating Zone", caption = "Each dot represents the average power and temperature, respectively, for one day")
-```
-
-
 ```{r AC plot}
 power_data_same_sites %>% 
   filter(category == "AC") %>% 
@@ -716,177 +688,6 @@ power_data_same_sites %>%
   #scale_fill_manual(values = c("#62B2B9", "#A06CB2", "#D42142", "#2B74A1", "#3F8F55", "#EBBA28"))
   scale_fill_manual(values = wes_palette("Darjeeling1", 10, type = "continuous"))+
   theme(axis.text.x = element_text(size = 11, color = "black"))
-```
-
-
-```{r read data one site}
-sites$ee_site_id[2]
-
-read_site_data <- function(site_num){
-  
-#   read_month_data <- function(quar_month, folder){
-# list.files(str_c("/Users/jessicakeast/Downloads/", quar_month, folder), full.names = TRUE) %>% 
-#   map(read_csv) %>% 
-#   reduce(rbind) %>% 
-#   mutate(month=str_extract(quar_month, "[A-Za-z]{3}$"),
-#          hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
-#          date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )")))
-# }
-# 
-#mon_list <- list("2019_Q1_v3/Jan", "2019_Q1_v3/Feb", "2019_Q1_v3/Mar", "2019_Q2_v3/Apr", "2019_Q2_v3/May", "2019_Q2_v3/Jun", "2019_Q3_v3/Jul", "2019_Q3_v3/Aug", "2019_Q3_v3/Sep", "2019_Q4_v3/Oct", "2019_Q4_v3/Nov", "2019_Q4_v3/Dec")
-  site_power_data <- NULL
-  
-  id <- sites$ee_site_id[site_num]
-  for (month in mon_list){
-    print(month)
-     site_power_data <- read_month_data(month, "/power/") %>% 
-      filter(ee_site_id == id) %>%
-      left_join(filter(points, ee_site_id == id), by = c("ee_site_id", "regname")) %>%
-      left_join(filter(sites, ee_site_id == id), by = c("ee_site_id")) %>%
-      # group_by(ee_site_id, regname, date, hour, month, hz, cz, state, circuit_label_type_desc, circuit_label, equipment_type_desc) %>%
-      # summarize(mean_power = mean(power), median_power = median(power), max_power=max(power), min_power=min(power)) %>%
-      rbind(site_power_data)
-  }
-    return(site_power_data)
-  
-}
-
-site_six <- read_site_data(6)
-
-plot_site_data <- function(site_num){
-  site_data <- read_site_data(site_num) %>% 
-    filter(!str_detect(circuit_label_type_desc, "Mains")) %>% 
-    group_by(month, equipment_type_desc, ee_site_id, state, hz, cz) %>% 
-    summarize(mean_power = mean(power)) %>% 
-    left_join(tibble(state.abb, state.name), by = c("state" = "state.abb"))
-  
-  
-  site_data$month <- factor(site_data$month, levels = month.abb)
-  
-  site_id <- unique(site_data$ee_site_id)
-  
-  ggplot(site_data) + geom_bar(aes(x=month, y=mean_power, fill = equipment_type_desc), stat = "identity")+
-    scale_fill_manual(values = wes_palette("Darjeeling1", length(unique(site_data$equipment_type_desc)), type = "continuous"))+
-    ggplot2::theme_bw() +
-    ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
-            plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
-    labs(title = str_c("Average Power Consumption of Site ", site_id), y = "Mean Power (kWh)", x = "Month", fill = NULL, caption = str_c("Site ", site_id, " is in ", unique(site_data$state.name), ", in Heating Zone ", unique(site_data$hz), " and Cooling Zone ", unique(site_data$cz)))
-}
-
-plot_site_data()
-
-
-
-c(1:5) %>% 
-  map(plot_site_data)
-```
-
-
-```{r treemap}
-power_sum <- NULL
-
-for (month in mon_list){
-  print(month)
-  power_sum <- read_month_data(month, "/power/") %>% 
-    left_join(points, by = c("ee_site_id", "regname")) %>% 
-    left_join(sites, by = c("ee_site_id")) %>% 
-    group_by(equipment_type_desc, circuit_label_type_desc) %>% 
-    summarize(sum_power = sum(power)) %>% 
-    rbind(power_sum)
-}
-
-power_sum <- power_sum %>% 
-  mutate(category = case_when(
-  circuit_label_type_desc %in% c("Clothes Dryer", "Clothes Washer", "Dishwasher", "Garbage Disposal", "Microwave", "Refrigerator/Freezer", "Stove/Oven/Range") ~ "Appliances",
-  str_detect(circuit_label_type_desc, "AC") ~ "AC",
-  str_detect(circuit_label_type_desc, "Heat") | str_detect(circuit_label_type_desc, "Furnace") ~ "Heating",
-  circuit_label_type_desc %in% c("Electric Vehicle Charger", "Hot Tub") | str_detect(circuit_label_type_desc, "Other") ~ "Other",
-  str_detect(circuit_label_type_desc, "Mains") ~ "Mains",
-  TRUE ~ circuit_label_type_desc)) %>% 
-  mutate(equipment_type_desc = simpleCap(equipment_type_desc),
-         equipment_type_desc = str_remove(equipment_type_desc, "\\(.*\\)"),
-         equipment_type_desc = str_trim(equipment_type_desc))
-
-power_sum2 <- power_sum %>% 
-  mutate(equipment_type_desc = simpleCap(equipment_type_desc),
-         equipment_type_desc = str_remove(equipment_type_desc, "\\(.*\\)")) %>% 
-  group_by(equipment_type_desc, category) %>% 
-  summarize(sum_power = sum(sum_power)) %>% 
-  filter(category != "Mains")
-
-simpleCap <- function(x) {
-    s <- strsplit(x, " ")[[1]]
-    paste(toupper(substring(s, 1, 1)), substring(s, 2),
-          sep = "", collapse = " ")
-}
-
-power_sum2 %>% 
-  filter(str_detect(equipment_type_desc, "\\("))
-
-
-write_csv(power_sum, "power_sum.csv")
-write_csv(power_sum2, "power_sum2.csv")
-
-power_sum2 %>% 
-  group_by(category) %>% 
-  summarize(sum_power = sum(sum_power)) %>% 
-  ggplot() + geom_bar(aes(x = category, y = sum_power), stat = "identity")
-
-library(treemap)
-power_sum %>% 
-  group_by(circuit_label_type_desc, category) %>% 
-  summarize(sum_power = sum(sum_power)) %>% 
-  mutate(circuit_label_type_desc = case_when(
-    circuit_label_type_desc == "Stove/Oven/Range" ~ "Stove/ Oven/ Range",
-    circuit_label_type_desc == "Refrigerator/Freezer" ~ "Refrigerator/ Freezer",
-    TRUE ~ circuit_label_type_desc
-  )) %>% 
-  filter(category != "Mains") %>% 
-  treemap(index=c("category","circuit_label_type_desc"), vSize="sum_power", type="index",
- 
-    fontsize.labels=c(12,7),                # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
-    fontcolor.labels=c("white","orange"),    # Color of labels
-    fontface.labels=c(2,1),                  # Font of labels: 1,2,3,4 for normal, bold, italic, bold-italic...
-    bg.labels=c("transparent"),              # Background color of labels
-    align.labels=list(
-        c("center", "center"), 
-        c("left", "top")
-        ),                                   # Where to place labels in the rectangle?
-    overlap.labels=1,                      # number between 0 and 1 that determines the tolerance of the overlap between labels. 0 means that labels of lower levels are not printed if higher level labels overlap, 1  means that labels are always printed. In-between values, for instance the default value .5, means that lower level labels are printed if other labels do not overlap with more than .5  times their area size.
-    inflate.labels=F,
-    palette = c("#5BBCD6", "#50A45C", "#FF0000", "#F69100"),
-    title = "Breakdown of Total Power Usage Tracked by EULR in 2019")
-
-wes_palette("Darjeeling1", 4, type = "continuous")
-
-
-power_data2 %>% 
-  group_by(circuit_label_type_desc, category) %>% 
-  summarize(mean_power = sum(mean_power)) %>% 
-  mutate(circuit_label_type_desc = case_when(
-    circuit_label_type_desc == "Stove/Oven/Range" ~ "Stove/ Oven/ Range",
-    circuit_label_type_desc == "Refrigerator/Freezer" ~ "Refrigerator/ Freezer",
-    circuit_label_type_desc == "Dishwasher" ~ "Dish- washer",
-    TRUE ~ circuit_label_type_desc
-  )) %>% 
-  filter(category != "Mains") %>% 
-  treemap(index=c("category","circuit_label_type_desc"), vSize="mean_power", type="index",
- 
-    fontsize.labels=c(12,7),                # size of labels. Give the size per level of aggregation: size for group, size for subgroup, sub-subgroups...
-    fontcolor.labels=c("white","orange"),    # Color of labels
-    fontface.labels=c(2,1),                  # Font of labels: 1,2,3,4 for normal, bold, italic, bold-italic...
-    bg.labels=c("transparent"),              # Background color of labels
-    align.labels=list(
-        c("center", "center"), 
-        c("left", "top")
-        ),                                   # Where to place labels in the rectangle?
-    overlap.labels=1,                      # number between 0 and 1 that determines the tolerance of the overlap between labels. 0 means that labels of lower levels are not printed if higher level labels overlap, 1  means that labels are always printed. In-between values, for instance the default value .5, means that lower level labels are printed if other labels do not overlap with more than .5  times their area size.
-    inflate.labels=F,
-    #palette = c("#5BBCD6", "#50A45C", "#FF0000", "#F69100", "#FFA4D6"),
-    palette = c("#5BBCD6", "#D98F2A", "#FF0000", "#91A737", "#F49C00", "#32806E"),
-    title = "Breakdown of Total Power Usage Tracked by EULR in 2019")
-
-wes_palette("Darjeeling1", 4, type = "continuous")
 ```
 
 ```{r}
