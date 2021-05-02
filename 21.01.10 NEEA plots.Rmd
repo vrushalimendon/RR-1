@@ -22,6 +22,7 @@ library(readxl)
 
 ```{r}
 sites <- read_csv("/Users/jessicakeast/Downloads/sites.csv")
+site_info <- read_csv("/Users/jessicakeast/Downloads/RBSA-II-Combined-Database/SiteOneLine.csv")
 temp_points <- read_csv("/Users/jessicakeast/Downloads/temperature-points.csv")
 points <- read_csv("/Users/jessicakeast/Downloads/points.csv")
 
@@ -210,6 +211,22 @@ num_uses <- points %>% filter(ee_site_id %in% jan_properties) %>%
 
 num_uses2 <- points %>% filter(ee_site_id %in% jan_properties)
 
+
+sites %>% filter(ee_site_id %in% jan_properties) %>% 
+  left_join(site_info, by = c("site_id" = "CK_SiteID")) %>% 
+  ggplot(aes(x= `Building Type`)) + geom_bar(stat = "count")
+
+sites %>% filter(ee_site_id %in% jan_properties) %>% 
+  left_join(site_info, by = c("site_id" = "CK_SiteID")) %>% 
+  ggplot(aes(x= Region)) + geom_bar(stat = "count")
+
+sites %>% filter(ee_site_id %in% jan_properties) %>% 
+  left_join(site_info, by = c("site_id" = "CK_SiteID")) %>% 
+  ggplot(aes(x= `Conditioned Area`)) + geom_histogram()
+
+sites %>% filter(ee_site_id %in% jan_properties) %>% 
+  left_join(site_info, by = c("site_id" = "CK_SiteID")) %>% 
+  ggplot(aes(x= `Conditioned Volume`)) + geom_histogram()
 ```
 
 
@@ -280,40 +297,6 @@ power_data_same_sites %>%
 
 
 ```{r}
-power_data_same_sites %>% 
-  filter(category == "Heating") %>% 
-  group_by(month, circuit_label_type_desc) %>% 
-  #mutate(cz = as.factor(cz)) %>% 
-  summarize(mean_power = mean(mean_power)) %>% 
-  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=mean_power, fill=circuit_label_type_desc), stat = "identity")+
-  facet_wrap(~month)+
-  scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
-                    labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
-  ggplot2::theme_bw() +
-  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
-          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
-          axis.text.x = element_blank(),
-          axis.ticks.x = element_blank())+
-  labs(title = "2019 EULR Average Power Used by Heaters (Same Sites)", y = "Load/Energy (kWh)", x = NULL, fill = NULL, caption = "*Ducted heatpumps are used for air conditioning at some sites,\nexplaining the higher load/energy in the Summer months.")
-
-
-power_data_same_sites %>% 
-  filter(category == "Heating") %>% 
-  group_by(month, circuit_label_type_desc) %>% 
-  #mutate(cz = as.factor(cz)) %>% 
-  summarize(median_power = median(median_power)) %>% 
-  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=median_power, fill=circuit_label_type_desc), stat = "identity")+
-  facet_wrap(~month)+
-  scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
-                    labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
-  ggplot2::theme_bw() +
-  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
-          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
-          axis.text.x = element_blank(),
-          axis.ticks.x = element_blank())+
-  labs(title = "2019 EULR Median Power Used by Heaters (Same Sites)", y = "Load/Energy (kWh)", x = NULL, fill = NULL, caption = "*Ducted heatpumps are used for air conditioning at some sites,\nexplaining the higher load/energy in the Summer months.")
-
-
 heating <- NULL
 
 for (month in mon_list){
@@ -329,6 +312,10 @@ for (month in mon_list){
   summarize(kW_hour = sum(power)) %>%
   rbind(heating)
 }
+
+heating <- heating %>% 
+  left_join(sites, by = "ee_site_id") %>% 
+  left_join(select(site_info, c("CK_SiteID", "Conditioned Area", "Conditioned Volume")), by = c("site_id" = "CK_SiteID"))
 
 heating2 <- heating %>% 
     mutate(month = case_when(
@@ -373,6 +360,56 @@ heating2 %>%
           axis.ticks.x = element_blank())+
   ylim(0, 15)+
   labs(title = "2019 EULR Power Used by Heaters", subtitle = "This plot does not include outliers over 15 kWh", y = "Load/Energy (kWh)", x = NULL, color = NULL)
+
+
+heating2 %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
+  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
+  ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_per_volume, color=circuit_label_type_desc))+
+  facet_wrap(~month)+
+  scale_color_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
+                    labels = c("Ducted Heatpump (34 sites)", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Fan Energy) (24 sites)", "Other Zonal Heat (11 sites)"))+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())+
+  labs(title = "2019 EULR Power Used by Heaters", y = "Load/Energy (kWh/sqft)", x = NULL, color = NULL)
+```
+
+```{r}
+heating2 %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
+  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
+  group_by(month, circuit_label_type_desc) %>% 
+  summarize(mean_kW_per_volume = mean(kW_per_volume)) %>% 
+  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=mean_kW_per_volume, fill=circuit_label_type_desc), stat = "identity")+
+  facet_wrap(~month)+
+  scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
+                    labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())+
+  labs(title = "2019 EULR Average Power Used by Heaters (Same Sites)", y = "Load/Energy (kWh/sqft)", x = NULL, fill = NULL, caption = "*Ducted heatpumps are used for air conditioning at some sites,\nexplaining the higher load/energy in the Summer months.")
+
+
+heating2 %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
+  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
+  group_by(month, circuit_label_type_desc) %>% 
+  summarize(median_kW_per_volume = median(kW_per_volume)) %>% 
+  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=median_kW_per_volume, fill=circuit_label_type_desc), stat = "identity")+
+  facet_wrap(~month)+
+  scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
+                    labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())+
+  labs(title = "2019 EULR Median Power Used by Heaters (Same Sites)", y = "Load/Energy (kWh/sqft)", x = NULL, fill = NULL, caption = "*Ducted heatpumps are used for air conditioning at some sites,\nexplaining the higher load/energy in the Summer months.")
 ```
 
 
