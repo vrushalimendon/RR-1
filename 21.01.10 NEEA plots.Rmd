@@ -27,6 +27,8 @@ temp_points <- read_csv("/Users/jessicakeast/Downloads/temperature-points.csv")
 points <- read_csv("/Users/jessicakeast/Downloads/points.csv")
 
 power_data_same_sites <- read_csv("power_data_same_sites.csv")
+heating <- read_csv("heating.csv")
+heating2 <- read_csv("heating2.csv")
 
 font_import(pattern="RobotoSlab")
 ```
@@ -196,7 +198,7 @@ temperature_data2$month <- factor(temperature_data2$month, levels = month.abb)
 
 ```
 
-```{r}
+```{r number uses}
 num_uses <- points %>% filter(ee_site_id %in% jan_properties) %>% 
   mutate(category = case_when(
     circuit_label_type_desc %in% c("Clothes Dryer", "Clothes Washer", "Dishwasher", "Garbage Disposal", "Microwave", "Refrigerator/Freezer", "Stove/Oven/Range") ~ "Other",
@@ -226,7 +228,7 @@ sites %>% filter(ee_site_id %in% jan_properties) %>%
 
 sites %>% filter(ee_site_id %in% jan_properties) %>% 
   left_join(site_info, by = c("site_id" = "CK_SiteID")) %>% 
-  ggplot(aes(x= `Conditioned Volume`)) + geom_histogram()
+  ggplot(aes(x= `Conditioned Area`)) + geom_histogram()
 ```
 
 
@@ -296,7 +298,7 @@ power_data_same_sites %>%
 
 
 
-```{r}
+```{r read heating data}
 heating <- NULL
 
 for (month in mon_list){
@@ -334,6 +336,13 @@ heating2 <- heating %>%
 
 heating2$month <- factor(heating2$month, levels = month.abb)
 
+
+#write_csv(heating, "heating.csv")
+#write_csv(heating2, "heating2.csv")
+```
+
+```{r}
+
 heating2 %>% 
   filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
   ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_hour, color=circuit_label_type_desc))+
@@ -364,8 +373,8 @@ heating2 %>%
 
 heating2 %>% 
   filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
-  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
-  ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_per_volume, color=circuit_label_type_desc))+
+  mutate(kW_per_area = kW_hour/`Conditioned Area`) %>% 
+  ggplot() + geom_boxplot(aes(x=circuit_label_type_desc, y=kW_per_area, color=circuit_label_type_desc))+
   facet_wrap(~month)+
   scale_color_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
                     labels = c("Ducted Heatpump (34 sites)", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Fan Energy) (24 sites)", "Other Zonal Heat (11 sites)"))+
@@ -380,10 +389,10 @@ heating2 %>%
 ```{r}
 heating2 %>% 
   filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
-  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
+  mutate(kW_per_area = kW_hour/`Conditioned Area`) %>% 
   group_by(month, circuit_label_type_desc) %>% 
-  summarize(mean_kW_per_volume = mean(kW_per_volume)) %>% 
-  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=mean_kW_per_volume, fill=circuit_label_type_desc), stat = "identity")+
+  summarize(mean_kW_per_area = mean(kW_per_area)) %>% 
+  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=mean_kW_per_area, fill=circuit_label_type_desc), stat = "identity")+
   facet_wrap(~month)+
   scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
                     labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
@@ -397,10 +406,10 @@ heating2 %>%
 
 heating2 %>% 
   filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace", "Gas Furnace (Component)", "Other Zonal Heat")) %>% 
-  mutate(kW_per_volume = kW_hour/`Conditioned Volume`) %>% 
+  mutate(kW_per_area = kW_hour/`Conditioned Area`) %>% 
   group_by(month, circuit_label_type_desc) %>% 
-  summarize(median_kW_per_volume = median(kW_per_volume)) %>% 
-  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=median_kW_per_volume, fill=circuit_label_type_desc), stat = "identity")+
+  summarize(median_kW_per_area = median(kW_per_area)) %>% 
+  ggplot() + geom_bar(aes(x=circuit_label_type_desc, y=median_kW_per_area, fill=circuit_label_type_desc), stat = "identity")+
   facet_wrap(~month)+
   scale_fill_manual(values = wes_palette("Darjeeling1", 6, type = "continuous"),
                     labels = c("Ducted Heatpump (34 sites)*", "Ductless Heatpump (9 sites)", "Electric Baseboard Heaters (16 sites)", "Electric Furnace (39 sites)", "Gas Furnance (Component) (24 sites)", "Other Zonal Heat (11 sites)"))+
@@ -506,6 +515,46 @@ jan_plot / aug_plot
 
 
 ```{r}
+trial_site <- jan_properties[4]
+
+temp_heating_one_site <- NULL
+
+for (month in mon_list){
+  print(month)
+  temp_heating_one_site <- read_month_data(month, "/temperature/") %>% 
+    filter(ee_site_id == trial_site) %>% 
+    left_join(temp_points, by = c("ee_site_id", "transmitter_code")) %>% 
+    left_join(sites, by = c("ee_site_id")) %>% 
+    mutate(min_t = min_t + hours(tz_utc_offset),
+      month=str_extract(min_t, "(?<=-)[0-9]{2}"), 
+      hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+      date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+    group_by(ee_site_id, date, hour, month, hz, cz) %>% 
+    summarize(mean_outdoor_temp = mean(na.omit(temp[interior_exterior==2])), 
+              median_outdoor_temp = median(na.omit(temp[interior_exterior==2])), 
+              max_outdoor_temp=max(na.omit(temp[interior_exterior==2])), 
+              min_outdoor_temp=min(na.omit(temp[interior_exterior==2])),
+              mean_indoor_temp = mean(na.omit(temp[interior_exterior==1])),
+              median_indoor_temp = median(na.omit(temp[interior_exterior==1])),
+              max_indoor_temp = max(na.omit(temp[interior_exterior==1])),
+              min_indoor_temp = min(na.omit(temp[interior_exterior==1]))) %>% 
+    rbind(temp_heating_one_site) 
+}
+
+temp_heating_one_site <- temp_heating_one_site %>% 
+    mutate(month = case_when(
+      month == "01" ~ "Jan",
+      month == "02" ~ "Feb",
+      month == "03" ~ "Mar",
+      month == "04" ~ "Apr",
+      month == "05" ~ "May",
+      month == "06" ~ "Jun",
+      month == "07" ~ "Jul",
+      month == "08" ~ "Aug",
+      month == "09" ~ "Sep",
+      month == "10" ~ "Oct",
+      month == "11" ~ "Nov",
+      month == "12" ~ "Dec"))
 # temp_heating <- NULL
 # 
 # for (month in mon_list){
@@ -525,8 +574,48 @@ jan_plot / aug_plot
 #   rbind(temp_heating)
 # }
 
+temp_heating_one_site <- temp_heating_one_site %>% 
+  left_join(heating2, by = c("ee_site_id", "date", "month", "hour"))
+
+ggplot(temp_heating_one_site) + geom_point(aes(x = mean_outdoor_temp, y = kW_hour), alpha = .2) +
+  facet_wrap(~circuit_label_type_desc)+
+  ggplot2::theme_bw() +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold")) +
+  labs(x = "Outdoor Temperature (F)", y = "Load/Energy (kWh)", title = "Temperature vs Heating Load for EULR Site 1016", caption = "Each point reflects the temperature and load, respectively, for one hour. Data shown is year-round from 2019.")
+
+
+```
+
+
+```{r}
+
+temp_heating <- NULL
+
+for (month in mon_list){
+  print(month)
+  temp_heating <- read_month_data(month, "/temperature/") %>% 
+    filter(ee_site_id %in% jan_properties) %>% 
+    left_join(temp_points, by = c("ee_site_id", "transmitter_code")) %>% 
+    filter(interior_exterior ==2) %>% 
+    left_join(sites, by = c("ee_site_id")) %>% 
+    mutate(min_t = min_t + hours(tz_utc_offset),
+      month=str_extract(min_t, "(?<=-)[0-9]{2}"), 
+      hour = parse_number(stringr::str_extract(min_t,"[0-9]{2}(?=:)")),
+      date = lubridate::ymd(stringr::str_extract(min_t, "[0-9\\-]*(?= )"))) %>% 
+    group_by(ee_site_id, date, hour, month, hz, cz) %>% 
+    summarize(mean_outdoor_temp = mean(na.omit(temp)), 
+              median_outdoor_temp = median(na.omit(temp)), 
+              max_outdoor_temp=max(na.omit(temp)), 
+              min_outdoor_temp=min(na.omit(temp))) %>% 
+    rbind(temp_heating) 
+}
+
+temp_heating <- temp_heating %>% 
+  left_join(heating, by = c("ee_site_id", "date", "month", "hour"))
+
 temp_heating %>% 
-  filter(kW_hour < 20) %>% 
+  #filter(kW_hour < 20) %>% 
   mutate(temp_cat = case_when(
     mean_outdoor_temp <= 15 ~ "< 15",
     mean_outdoor_temp <= 25 ~ "15-25",
@@ -548,6 +637,31 @@ temp_heating %>%
   ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
           plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
   labs(title = "Power Used by Heaters by Temperature", y = "Load/Energy (kWh)", x = "Temperature (F)") 
+
+temp_heating %>% 
+  filter(!is.na(circuit_label_type_desc)) %>% 
+  mutate(temp_cat = case_when(
+    mean_outdoor_temp <= 15 ~ "< 15",
+    mean_outdoor_temp <= 25 ~ "15-25",
+    mean_outdoor_temp <= 35 ~ "25-35",
+    mean_outdoor_temp <= 45 ~ "35-45",
+    mean_outdoor_temp <= 55 ~ "45-55",
+    mean_outdoor_temp <= 65 ~ "55-65",
+    mean_outdoor_temp <= 75 ~ "65-75",
+    mean_outdoor_temp <= 85 ~ "75-85",
+    mean_outdoor_temp <= 95 ~ "85-95",
+    mean_outdoor_temp > 95 ~ "95+"),
+    kWh_by_area = kW_hour/`Conditioned Area`) %>% 
+  #filter(kW_hour > 0.1) %>% 
+  ggplot(aes(x=temp_cat, y = kWh_by_area))+
+  geom_boxplot(color = "#257BA0", size = .75)+
+  facet_wrap(~circuit_label_type_desc, nrow = 2)+
+  ggplot2::theme_bw() +
+  #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  #ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "Power Used by Heaters by Temperature", y = "Load/Energy (kWh/sqft)", x = "Temperature (F)") 
 
 temp_heating %>% 
   filter(kW_hour < 20) %>% 
@@ -576,7 +690,7 @@ temp_heating %>%
 ```
 
 
-```{r LEFT OFF HERE!!!!}
+```{r}
 power_data_same_sites %>% 
   #mutate(hz = str_c("HZ ", hz), cz = str_c("CZ ", cz)) %>% 
   filter(category == "Heating") %>% 
