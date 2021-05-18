@@ -614,8 +614,7 @@ for (month in mon_list){
 temp_heating <- temp_heating %>% 
   left_join(heating, by = c("ee_site_id", "date", "month", "hour"))
 
-temp_heating %>% 
-  #filter(kW_hour < 20) %>% 
+temp_heating <- temp_heating %>% 
   mutate(temp_cat = case_when(
     mean_outdoor_temp <= 15 ~ "< 15",
     mean_outdoor_temp <= 25 ~ "15-25",
@@ -626,7 +625,27 @@ temp_heating %>%
     mean_outdoor_temp <= 75 ~ "65-75",
     mean_outdoor_temp <= 85 ~ "75-85",
     mean_outdoor_temp <= 95 ~ "85-95",
-    mean_outdoor_temp > 95 ~ "95+")) %>% 
+    mean_outdoor_temp > 95 ~ "95+"),
+    kWh_by_area = kW_hour/`Conditioned Area`,
+    facet_label = case_when(
+      circuit_label_type_desc == "Ducted Heatpump" ~ "Ducted Heatpump (34 sites)",
+      circuit_label_type_desc == "Ductless Heatpump" ~ "Ductless Heatpump (9 sites)",
+      circuit_label_type_desc == "Electric Baseboard Heaters" ~ "Electric Baseboard Heaters (16 sites)",
+      circuit_label_type_desc == "Electric Furnace" ~ "Electric Furnace (39 sites)",
+      circuit_label_type_desc == "Gas Furnace (Component)" ~ "Gas Furnance (Fan Energy) (24 sites)",
+      circuit_label_type_desc == "Other Zonal Heat" ~ "Other Zonal Heat (11 sites)"
+    ))
+
+
+
+ 
+
+```
+
+```{r}
+
+temp_heating %>% 
+  #filter(kW_hour < 20) %>% 
   #filter(kW_hour > 0.1) %>% 
   ggplot(aes(x=temp_cat, y = kW_hour))+
   geom_boxplot(color = "#257BA0", size = .75)+
@@ -640,22 +659,36 @@ temp_heating %>%
 
 temp_heating %>% 
   filter(!is.na(circuit_label_type_desc)) %>% 
-  mutate(temp_cat = case_when(
-    mean_outdoor_temp <= 15 ~ "< 15",
-    mean_outdoor_temp <= 25 ~ "15-25",
-    mean_outdoor_temp <= 35 ~ "25-35",
-    mean_outdoor_temp <= 45 ~ "35-45",
-    mean_outdoor_temp <= 55 ~ "45-55",
-    mean_outdoor_temp <= 65 ~ "55-65",
-    mean_outdoor_temp <= 75 ~ "65-75",
-    mean_outdoor_temp <= 85 ~ "75-85",
-    mean_outdoor_temp <= 95 ~ "85-95",
-    mean_outdoor_temp > 95 ~ "95+"),
-    kWh_by_area = kW_hour/`Conditioned Area`) %>% 
   #filter(kW_hour > 0.1) %>% 
   ggplot(aes(x=temp_cat, y = kWh_by_area))+
   geom_boxplot(color = "#257BA0", size = .75)+
-  facet_wrap(~circuit_label_type_desc, nrow = 2)+
+  facet_wrap(~facet_label, nrow = 2)+
+  ggplot2::theme_bw() +
+  #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  #ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "Power Used by Heaters by Temperature", y = "Load/Energy (kWh/sqft)", x = "Temperature (F)") 
+
+temp_heating %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump", "Electric Baseboard Heaters", "Electric Furnace")) %>% 
+  #filter(kW_hour > 0.1) %>% 
+  ggplot(aes(x=temp_cat, y = kWh_by_area))+
+  geom_boxplot(color = "#257BA0", size = .75)+
+  facet_wrap(~facet_label, nrow = 2)+
+  ggplot2::theme_bw() +
+  #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
+  #ylim(c(0, 53)) +
+  ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
+          plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
+  labs(title = "Power Used by Heaters by Temperature", y = "Load/Energy (kWh/sqft)", x = "Temperature (F)") 
+
+temp_heating %>% 
+  filter(circuit_label_type_desc %in% c("Ducted Heatpump", "Ductless Heatpump")) %>% 
+  #filter(kW_hour > 0.1) %>% 
+  ggplot(aes(x=temp_cat, y = kWh_by_area))+
+  geom_boxplot(color = "#257BA0", size = .75)+
+  facet_wrap(~facet_label, nrow = 2)+
   ggplot2::theme_bw() +
   #scale_x_continuous(limits = c(2, 115), breaks = c(30, 60, 90)) + 
   #ylim(c(0, 53)) +
@@ -665,17 +698,6 @@ temp_heating %>%
 
 temp_heating %>% 
   filter(kW_hour < 20) %>% 
-  mutate(temp_cat = case_when(
-    mean_outdoor_temp <= 15 ~ "< 15",
-    mean_outdoor_temp <= 25 ~ "15-25",
-    mean_outdoor_temp <= 35 ~ "25-35",
-    mean_outdoor_temp <= 45 ~ "35-45",
-    mean_outdoor_temp <= 55 ~ "45-55",
-    mean_outdoor_temp <= 65 ~ "55-65",
-    mean_outdoor_temp <= 75 ~ "65-75",
-    mean_outdoor_temp <= 85 ~ "75-85",
-    mean_outdoor_temp <= 95 ~ "85-95",
-    mean_outdoor_temp > 95 ~ "95+")) %>% 
   #filter(kW_hour > 0.1) %>% 
   ggplot(aes(x=temp_cat))+
   geom_bar(fill = "#257BA0", stat = "count")+
@@ -686,6 +708,10 @@ temp_heating %>%
   ggplot2::theme(text = ggplot2::element_text(family = choose_font(c("Muli", "sans"))),
           plot.title=ggplot2::element_text(family = choose_font(c("Roboto Slab", "serif")), face="bold"))+
   labs(title = "Power Used by Heaters by Temperature", y = "Number of Observations", x = "Temperature (F)") 
+
+```
+
+```{r}
 
 ```
 
