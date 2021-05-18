@@ -423,6 +423,10 @@ heating2 %>%
 
 
 ```{r AC plot}
+temp_avg3 <- temperature_data %>% 
+  group_by(date, cz, hz) %>% 
+  summarize(mean_temp =  mean(mean_outdoor_temp), median_temp = median(median_outdoor_temp))
+
 power_data_same_sites %>% 
   filter(category == "AC") %>% 
   group_by(month, date, hz, cz) %>% 
