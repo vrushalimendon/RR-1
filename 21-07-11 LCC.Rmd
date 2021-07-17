@@ -1,0 +1,74 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r}
+calculate_LCC_savings <- function(total_increment_cost, avoided_cost_carbon, increment_cost_windows, increment_cost_opaque_insulation, increment_cost_HVAC){
+
+	#variables
+	mortgage_interest_rate <- 0.04 #4%
+	loan_term <- 30 #years
+	down_payment_rate <- 0.2 #20%
+	points_and_loan_fees <- 0.005 #.5%
+	discount_rate <- 0.04 #4%
+	property_tax_rate <- .0165  #1.7%
+	income_tax_rate <- .2133 #21.3%
+	home_price_escalation_rate <- 0.019 #1.9%
+	inflation_rate <- 0.019 #1.9%
+	energy_escalation_rate <- 0.006 #0.06%
+	window_EUL <- 20 #years
+	opaque_insulation_EUL <- 60 #years
+	HVAC_EUL <- 15 #years
+
+	mortgage_payment_multiplier <- ((( 1 - down_payment_rate) * 12)/
+	                                  ((((1 + (mortgage_interest_rate/12))^12 * loan_term) - 1)/
+	                                     (mortgage_interest_rate/12 * (1 + (mortgage_interest_rate/12))^12 * loan_term)))
+	                                  
+	
+	
+	mortgage_payment <- total_increment_cost * mortgage_payment_multiplier
+
+	
+	LCC_savings <- (down_payment_rate * total_increment_cost) +
+	  (points_and_loan_fees * total_increment_cost * (1 - down_payment_rate))
+	
+	print(LCC_savings)
+#down payment + mortgage fee
+	
+  for(i in 1:30){
+  		year <- i
+  		
+  		property_tax <- property_tax_rate * total_increment_cost * 
+  		  (1 + home_price_escalation_rate)^year
+  
+  		energy_savings <- avoided_cost_carbon * (1 + energy_escalation_rate)^year 
+  
+  		tax_deduction <- -1 * (income_tax_rate * 
+  		                         (property_tax_rate + mortgage_payment * mortgage_interest_rate) * 
+  		                         ((1 + mortgage_interest_rate)^(loan_term - year + 1)-1)/
+  		                         (mortgage_interest_rate * (1 + mortgage_interest_rate)^(loan_term - year + 1)))
+  		
+  		replacement_costs <- (if(year %% window_EUL == 0) ((1 + home_price_escalation_rate^year) *
+  		                                                     increment_cost_windows) else 0) +
+  		  (if(year %% opaque_insulation_EUL == 0) ((1 + home_price_escalation_rate)^year *
+  		     increment_cost_opaque_insulation) else 0) +
+  		  (if(year %% HVAC_EUL == 0) ((1 + home_price_escalation_rate^year) * increment_cost_HVAC) else 0)
+  		
+  		LCC_savings <- LCC_savings + 
+  		  mortgage_payment + 
+  		  (property_tax + energy_savings + tax_deduction + replacement_costs)/
+  		  (1 + discount_rate)^year
+  		
+  		print(year)
+  		print(replacement_costs)
+  }
+	LCC_savings
+}
+
+```
+
+```{r}
+calculate_LCC_savings(300, -20, 2, 0, 100)
+```
+
