@@ -7,6 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
+library(ggplot2)
 library(shiny)
 
 # Define UI for application that draws a histogram
@@ -19,21 +20,43 @@ ui <- fluidPage(
    sidebarLayout(
       sidebarPanel(
          sliderInput("total_increment_cost",
-                     "Total Increment Cost:",
+                     "Total Increment Cost ($ per Dwelling Unit):",
                      min = 0,
-                     max = 5000,
+                     max = 10000,
                      value = 400),
-           sliderInput("avoided_cost_carbon",
-                       "Avoided Cost of Carbon:",
-                       min = 0,
-                       max = 500,
-                       value = 30),
+         sliderInput("discount_rate",
+                     "Discount Rate (%):",
+                     min = 0,
+                     max = 30,
+                     value = 4),
          sliderInput("EUL",
-                     "Economic Useful Life:",
+                     "Economic Useful Life (Years):",
                      min = 0,
                      max = 100,
-                     value = 30)
+                     value = 30),
+         sliderInput("energy_price_elec",
+                       "Energy Price - Electricity ($/kBtu):",
+                       min = 0,
+                       max = 800,
+                       value = 30),
+         sliderInput("energy_escalation_rate_elec",
+                     "Energy Escalation Rate - Electricity (%):",
+                     min = 0,
+                     max = 30,
+                     value = 0.6),
+         sliderInput("energy_price_ff",
+                     "Energy Price - Fossil Fuels ($/kBtu):",
+                     min = 0,
+                     max = 800,
+                     value = 0),
+         sliderInput("energy_escalation_rate_ff",
+                     "Energy Escalation Rate - Fossil Fuels (%):",
+                     min = 0,
+                     max = 30,
+                     value = 0.6)
+
       ),
+      
 
       
       # Show a plot of the generated distribution
@@ -47,19 +70,17 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$distPlot <- renderPlot({
-     calculate_LCC_savings <- function(total_increment_cost, avoided_cost_carbon, EUL){
+     calculate_LCC_savings <- function(total_increment_cost, energy_price_elec, energy_price_ff, EUL, energy_escalation_rate_elec, energy_escalation_rate_ff, discount_rate){ #4%){#0.06%){
        
        #variables
        mortgage_interest_rate <- 0.04 #4%
        loan_term <- 30 #years
        down_payment_rate <- 0.2 #20%
        points_and_loan_fees <- 0.005 #.5%
-       discount_rate <- 0.04 #4%
        property_tax_rate <- .0165  #1.7%
        income_tax_rate <- .2133 #21.3%
        home_price_escalation_rate <- 0.019 #1.9%
        inflation_rate <- 0.019 #1.9%
-       energy_escalation_rate <- 0.006 #0.06%
        
        mortgage_payment_multiplier <- ((( 1 - down_payment_rate) * 12)/
                                          ((((1 + (mortgage_interest_rate/12))^12 * loan_term) - 1)/
@@ -95,7 +116,7 @@ server <- function(input, output) {
            (1 + home_price_escalation_rate)^year
          property_tax_sum <- property_tax_sum + (property_tax)/(1 + discount_rate)^year
          
-         energy_savings <- -1 * avoided_cost_carbon * (1 + energy_escalation_rate)^year 
+         energy_savings <- -1 * ((energy_price_elec * (1 + energy_escalation_rate_elec)^year) + (energy_price_ff * (1 + energy_escalation_rate_ff)^year))
          energy_savings_sum <- energy_savings_sum + (energy_savings)/(1 + discount_rate)^year
          
          tax_deduction <- -1 * (income_tax_rate * 
@@ -138,7 +159,7 @@ server <- function(input, output) {
        
      }
      
-     calculate_LCC_savings(input$total_increment_cost, input$avoided_cost_carbon, input$EUL)
+     calculate_LCC_savings(input$total_increment_cost, input$energy_price_elec, input$energy_price_ff, input$EUL, input$energy_escalation_rate_elec/100, input$energy_escalation_rate_ff/100, input$discount_rate/100)
    })
 }
 

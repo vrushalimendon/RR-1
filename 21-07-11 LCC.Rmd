@@ -21,7 +21,7 @@ calculate_LCC_savings <- function(total_increment_cost, avoided_cost_carbon, EUL
 	income_tax_rate <- .2133 #21.3%
 	home_price_escalation_rate <- 0.019 #1.9%
 	inflation_rate <- 0.019 #1.9%
-	energy_escalation_rate <- 0.006 #0.06%
+	energy_escalation_rate <- 0.0006 #0.06%
 
 	mortgage_payment_multiplier <- ((( 1 - down_payment_rate) * 12)/
 	                                  ((((1 + (mortgage_interest_rate/12))^12 * loan_term) - 1)/
