@@ -15,55 +15,75 @@ ui <- fluidPage(
    
    # Application title
    titlePanel("Justified First Cost"),
-   
-   # Sidebar with a slider input for number of bins 
-   sidebarLayout(
-      sidebarPanel(
-         sliderInput("total_increment_cost",
-                     "Total Increment Cost ($ per Dwelling Unit):",
-                     min = 0,
-                     max = 10000,
-                     value = 400),
-         sliderInput("discount_rate",
-                     "Discount Rate (%):",
-                     min = 0,
-                     max = 30,
-                     value = 4),
-         sliderInput("EUL",
-                     "Economic Useful Life (Years):",
-                     min = 0,
-                     max = 100,
-                     value = 30),
-         sliderInput("energy_price_elec",
-                       "Energy Price - Electricity ($/kBtu):",
-                       min = 0,
-                       max = 800,
-                       value = 30),
-         sliderInput("energy_escalation_rate_elec",
-                     "Energy Escalation Rate - Electricity (%):",
-                     min = 0,
-                     max = 30,
-                     value = 0.6),
-         sliderInput("energy_price_ff",
-                     "Energy Price - Fossil Fuels ($/kBtu):",
-                     min = 0,
-                     max = 800,
-                     value = 0),
-         sliderInput("energy_escalation_rate_ff",
-                     "Energy Escalation Rate - Fossil Fuels (%):",
-                     min = 0,
-                     max = 30,
-                     value = 0.6)
+   fluidRow(
+     
+     column(3,
+            
+            wellPanel(
 
-      ),
-      
-
-      
-      # Show a plot of the generated distribution
-      mainPanel(
-         plotOutput("distPlot")
-      )
+              
+              sliderInput("total_increment_cost",
+                          "Total Increment Cost ($ per Dwelling Unit):",
+                          min = 0,
+                          max = 10000,
+                          value = 400),
+              sliderInput("discount_rate",
+                          "Discount Rate (%):",
+                          min = 0,
+                          max = 30,
+                          value = 4),
+              sliderInput("EUL",
+                          "Economic Useful Life (Years):",
+                          min = 0,
+                          max = 100,
+                          value = 30)
+            ),
+            wellPanel(
+              sliderInput("energy_price_elec",
+                          "Energy Price - Electricity ($/kBtu):",
+                          min = 0,
+                          max = 800,
+                          value = 30),
+              sliderInput("energy_escalation_rate_elec",
+                          "Energy Escalation Rate - Electricity (%):",
+                          min = 0,
+                          max = 30,
+                          value = 0.6)
+            ),
+            wellPanel(
+              sliderInput("energy_price_ff",
+                          "Energy Price - Fossil Fuels ($/kBtu):",
+                          min = 0,
+                          max = 800,
+                          value = 0),
+              sliderInput("energy_escalation_rate_ff",
+                          "Energy Escalation Rate - Fossil Fuels (%):",
+                          min = 0,
+                          max = 30,
+                          value = 0.6),
+              checkboxInput("avoided_cost_carbon",
+                            "Factor in Avoided Cost of Carbon")
+            )
+     ),
+     
+     # beginning of right side
+     mainPanel(plotOutput("distPlot"),
+               tags$br(),
+               p("This plot shows the cumulative yearly Life Cycle Cost (LCC) savings of a given energy-saving mechanism to help determine the justified first cost. With most measures it is ideal for the LCC savings to equal zero either at the end of the mechanism’s Expected Useful Life (EUL) or at the end of the building’s mortgage (assumed here to be 30 years, marked by the dotted vertical line) -- so you may want the solid black line to fall at zero at the end of the plot."),
+               tags$br(),
+               p("LCC (the solid black line) is calculated as the cumulative sum of yearly energy savings (in green), yearly tax deduction (in blue), and yearly property tax (in orange), all respectively divided by the sum of one and the annual discount rate and raised to the power of the number of years passed, and initial cost (in yellow) and yearly mortgage loan payment (in red). Once the mortgage term of 30 years has passed, the loan payment and tax deduction are no longer included in the equation."),
+               tags$br(),
+               p("Resources:"),
+               p(a(href = "[https://www.energypolicy.columbia.edu/research/report/levelized-cost-carbon-abatement-improved-cost-assessment-methodology-net-zero-emissions-world]", "Levelized Cost of Carbon")),
+               p(a(href = "[https://news.climate.columbia.edu/2021/04/01/social-cost-of-carbon/]", "Social Cost of Carbon")),
+               p(a(href = "[https://news.stanford.edu/2021/06/07/professors-explain-social-cost-carbon/ ]", "Social Cost of Carbon")),
+               p(a(href = "[https://database.aceee.org/state/carbon-pricing]", "ACEEE Carbon Pricing")),
+               p(a(href = "[https://www.wbdg.org/resources/life-cycle-cost-analysis-lcca]", "Life Cycle Cost Analysis"))
+               #column end
+     
    )
+   
+)
 )
 
 # Define server logic required to draw a histogram
@@ -154,6 +174,7 @@ server <- function(input, output) {
          geom_col(data = LCC_savings_data, aes(x=year, y=value, fill=component))+
          geom_line(data = savings_data, aes(x = year, y = LCC_savings), size = 2) +
          geom_vline(xintercept = 30, linetype = 2) +
+         theme_gray(base_size = 14)+
          labs(y = "Total Savings (-) Versus Cost (+) ($)", x = "Year", fill = NULL, title = "Cumulative Life Cycle Cost (LCC) Savings")+
          scale_fill_manual(values = c("#FFA3A3", "#FFBF75", "#FFE299", "#89CEEB", "#97E2C0"))
        
@@ -161,6 +182,7 @@ server <- function(input, output) {
      
      calculate_LCC_savings(input$total_increment_cost, input$energy_price_elec, input$energy_price_ff, input$EUL, input$energy_escalation_rate_elec/100, input$energy_escalation_rate_ff/100, input$discount_rate/100)
    })
+   
 }
 
 # Run the application 
