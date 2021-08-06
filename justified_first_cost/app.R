@@ -14,7 +14,7 @@ library(shiny)
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Justified First Cost"),
+   titlePanel("Justified First Costs: Residential Buildings"),
    fluidRow(
      
      column(3,
@@ -23,9 +23,9 @@ ui <- fluidPage(
 
               
               sliderInput("total_increment_cost",
-                          "Total Increment Cost ($ per Dwelling Unit):",
+                          "Total Incremental Cost ($ per Dwelling Unit):",
                           min = 0,
-                          max = 10000,
+                          max = 5000,
                           value = 400),
               sliderInput("discount_rate",
                           "Discount Rate (%):",
@@ -33,47 +33,47 @@ ui <- fluidPage(
                           max = 30,
                           value = 4),
               sliderInput("EUL",
-                          "Economic Useful Life (Years):",
+                          "Effective/Expected Useful Measure Life (Years):",
                           min = 0,
                           max = 100,
                           value = 30)
             ),
             wellPanel(
               sliderInput("energy_price_elec",
-                          "Energy Price - Electricity ($/kBtu):",
+                          "Energy Price - Electricity ($/kWh):",
                           min = 0,
-                          max = 800,
-                          value = 30),
+                          max = 2.0,
+                          value = 0.18),
               sliderInput("energy_escalation_rate_elec",
                           "Energy Escalation Rate - Electricity (%):",
                           min = 0,
-                          max = 30,
+                          max = 5,
                           value = 0.6)
             ),
             wellPanel(
-              sliderInput("energy_price_ff",
-                          "Energy Price - Fossil Fuels ($/kBtu):",
+              sliderInput("energy_price_ff", # VM: Changing this to $/therm from $/kBtu; update following cost calcs accordingly. Also split fossil into gas and oil eventually.
+                          "Energy Price - Fossil Fuels ($/therm):",
                           min = 0,
-                          max = 800,
-                          value = 0),
+                          max = 5,
+                          value = 1.167),
               sliderInput("energy_escalation_rate_ff",
                           "Energy Escalation Rate - Fossil Fuels (%):",
                           min = 0,
-                          max = 30,
-                          value = 0.6),
+                          max = 5,
+                          value = 1.7),
               checkboxInput("avoided_cost_carbon",
-                            "Factor in Avoided Cost of Carbon")
+                            "Factor in Avoided Cost of Carbon") # VM: If this box is checked, the fuel prices will be increased accordingly.
             )
      ),
      
      # beginning of right side
      mainPanel(plotOutput("distPlot"),
                tags$br(),
-               p("This plot shows the cumulative yearly Life Cycle Cost (LCC) savings of a given energy-saving mechanism to help determine the justified first cost. With most measures it is ideal for the LCC savings to equal zero either at the end of the mechanism’s Expected Useful Life (EUL) or at the end of the building’s mortgage (assumed here to be 30 years, marked by the dotted vertical line) -- so you may want the solid black line to fall at zero at the end of the plot."),
+               p("This plot shows the cumulative Life Cycle Cost (LCC) savings of a given energy-saving measure to help determine the justified first cost. With most measures it is ideal for the LCC savings to equal zero either at the end of the mechanism’s Expected Useful Life (EUL) or at the end of the building’s mortgage (assumed here to be 30 years, marked by the dotted vertical line) -- so you may want the solid black line to fall at zero at the end of the plot."),
                tags$br(),
                p("LCC (the solid black line) is calculated as the cumulative sum of yearly energy savings (in green), yearly tax deduction (in blue), and yearly property tax (in orange), all respectively divided by the sum of one and the annual discount rate and raised to the power of the number of years passed, and initial cost (in yellow) and yearly mortgage loan payment (in red). Once the mortgage term of 30 years has passed, the loan payment and tax deduction are no longer included in the equation."),
                tags$br(),
-               p("Resources:"),
+               p("Resources:"), # VM: Let's update these sources to point to the two NYS refs I flagged. Just to make sure that the methodology and bounds are consistent.
                p(a(href = "[https://www.energypolicy.columbia.edu/research/report/levelized-cost-carbon-abatement-improved-cost-assessment-methodology-net-zero-emissions-world]", "Levelized Cost of Carbon")),
                p(a(href = "[https://news.climate.columbia.edu/2021/04/01/social-cost-of-carbon/]", "Social Cost of Carbon")),
                p(a(href = "[https://news.stanford.edu/2021/06/07/professors-explain-social-cost-carbon/ ]", "Social Cost of Carbon")),
@@ -93,7 +93,7 @@ server <- function(input, output) {
      calculate_LCC_savings <- function(total_increment_cost, energy_price_elec, energy_price_ff, EUL, energy_escalation_rate_elec, energy_escalation_rate_ff, discount_rate){ #4%){#0.06%){
        
        #variables
-       mortgage_interest_rate <- 0.04 #4%
+       mortgage_interest_rate <- 0.04 #4% # VM: This should come from the slider input above right?
        loan_term <- 30 #years
        down_payment_rate <- 0.2 #20%
        points_and_loan_fees <- 0.005 #.5%
@@ -136,7 +136,7 @@ server <- function(input, output) {
            (1 + home_price_escalation_rate)^year
          property_tax_sum <- property_tax_sum + (property_tax)/(1 + discount_rate)^year
          
-         energy_savings <- -1 * ((energy_price_elec * (1 + energy_escalation_rate_elec)^year) + (energy_price_ff * (1 + energy_escalation_rate_ff)^year))
+         energy_savings <- -1 * ((energy_price_elec * (1 + energy_escalation_rate_elec)^year) + (energy_price_ff * (1 + energy_escalation_rate_ff)^year)) # VM: Let's make the energy savings kWh or therm an input slider and make the JFC an output
          energy_savings_sum <- energy_savings_sum + (energy_savings)/(1 + discount_rate)^year
          
          tax_deduction <- -1 * (income_tax_rate * 
@@ -145,6 +145,7 @@ server <- function(input, output) {
                                   (mortgage_interest_rate * (1 + mortgage_interest_rate)^(loan_term - year + 1)))
          tax_deduction_sum <- tax_deduction_sum + if(year <= loan_term)(tax_deduction/(1 + discount_rate)^year)else(0)
          
+            # VM: Let's change the following to report annual cashflows, not cummulative, in the chart. The black line can be a summation.
          LCC_savings <- LCC_savings + 
            (if(year <= loan_term)(mortgage_payment)else(0)) + 
            (property_tax + energy_savings + (if(year <= loan_term)(tax_deduction)else(0)))/
